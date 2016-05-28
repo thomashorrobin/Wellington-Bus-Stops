@@ -788,6 +788,9 @@
                             </button>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="ckZ-ms-E5j" id="VJJ-XP-3fK"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

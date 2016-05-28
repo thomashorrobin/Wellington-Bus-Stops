@@ -7,13 +7,17 @@
 //
 
 import Cocoa
+import MapKit
 
-class ViewController: NSViewController {
+class ViewController: NSViewController, MKMapViewDelegate {
 
+    @IBOutlet weak var mapView: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        mapView.delegate = self
+        BusStop.getStopsGeo({(busStop: BusStop) -> () in
+            self.mapView.addAnnotation(busStop)
+        })
     }
 
     override var representedObject: AnyObject? {
