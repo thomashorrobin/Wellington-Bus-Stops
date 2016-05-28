@@ -1,0 +1,411 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		49F1BA831CF94B4D0078AAE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F1BA821CF94B4D0078AAE7 /* AppDelegate.swift */; };
+		49F1BA851CF94B4E0078AAE7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F1BA841CF94B4D0078AAE7 /* ViewController.swift */; };
+		49F1BA881CF94B4E0078AAE7 /* Wellington_Bus_Stops.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49F1BA861CF94B4E0078AAE7 /* Wellington_Bus_Stops.xcdatamodeld */; };
+		49F1BA8A1CF94B4E0078AAE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49F1BA891CF94B4E0078AAE7 /* Assets.xcassets */; };
+		49F1BA8D1CF94B4E0078AAE7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49F1BA8B1CF94B4E0078AAE7 /* Main.storyboard */; };
+		49F1BA981CF94B4E0078AAE7 /* Wellington_Bus_StopsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F1BA971CF94B4E0078AAE7 /* Wellington_Bus_StopsTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		49F1BA941CF94B4E0078AAE7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 49F1BA771CF94B4D0078AAE7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 49F1BA7E1CF94B4D0078AAE7;
+			remoteInfo = "Wellington Bus Stops";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		49F1BA7F1CF94B4D0078AAE7 /* Wellington Bus Stops.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wellington Bus Stops.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		49F1BA821CF94B4D0078AAE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		49F1BA841CF94B4D0078AAE7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		49F1BA871CF94B4E0078AAE7 /* Wellington_Bus_Stops.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Wellington_Bus_Stops.xcdatamodel; sourceTree = "<group>"; };
+		49F1BA891CF94B4E0078AAE7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		49F1BA8C1CF94B4E0078AAE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		49F1BA8E1CF94B4E0078AAE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49F1BA931CF94B4E0078AAE7 /* Wellington Bus StopsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Wellington Bus StopsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		49F1BA971CF94B4E0078AAE7 /* Wellington_Bus_StopsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wellington_Bus_StopsTests.swift; sourceTree = "<group>"; };
+		49F1BA991CF94B4E0078AAE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		49F1BA7C1CF94B4D0078AAE7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49F1BA901CF94B4E0078AAE7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		49F1BA761CF94B4D0078AAE7 = {
+			isa = PBXGroup;
+			children = (
+				49F1BA811CF94B4D0078AAE7 /* Wellington Bus Stops */,
+				49F1BA961CF94B4E0078AAE7 /* Wellington Bus StopsTests */,
+				49F1BA801CF94B4D0078AAE7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		49F1BA801CF94B4D0078AAE7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				49F1BA7F1CF94B4D0078AAE7 /* Wellington Bus Stops.app */,
+				49F1BA931CF94B4E0078AAE7 /* Wellington Bus StopsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		49F1BA811CF94B4D0078AAE7 /* Wellington Bus Stops */ = {
+			isa = PBXGroup;
+			children = (
+				49F1BA821CF94B4D0078AAE7 /* AppDelegate.swift */,
+				49F1BA841CF94B4D0078AAE7 /* ViewController.swift */,
+				49F1BA891CF94B4E0078AAE7 /* Assets.xcassets */,
+				49F1BA8B1CF94B4E0078AAE7 /* Main.storyboard */,
+				49F1BA8E1CF94B4E0078AAE7 /* Info.plist */,
+				49F1BA861CF94B4E0078AAE7 /* Wellington_Bus_Stops.xcdatamodeld */,
+			);
+			path = "Wellington Bus Stops";
+			sourceTree = "<group>";
+		};
+		49F1BA961CF94B4E0078AAE7 /* Wellington Bus StopsTests */ = {
+			isa = PBXGroup;
+			children = (
+				49F1BA971CF94B4E0078AAE7 /* Wellington_Bus_StopsTests.swift */,
+				49F1BA991CF94B4E0078AAE7 /* Info.plist */,
+			);
+			path = "Wellington Bus StopsTests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		49F1BA7E1CF94B4D0078AAE7 /* Wellington Bus Stops */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 49F1BA9C1CF94B4E0078AAE7 /* Build configuration list for PBXNativeTarget "Wellington Bus Stops" */;
+			buildPhases = (
+				49F1BA7B1CF94B4D0078AAE7 /* Sources */,
+				49F1BA7C1CF94B4D0078AAE7 /* Frameworks */,
+				49F1BA7D1CF94B4D0078AAE7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Wellington Bus Stops";
+			productName = "Wellington Bus Stops";
+			productReference = 49F1BA7F1CF94B4D0078AAE7 /* Wellington Bus Stops.app */;
+			productType = "com.apple.product-type.application";
+		};
+		49F1BA921CF94B4E0078AAE7 /* Wellington Bus StopsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 49F1BA9F1CF94B4E0078AAE7 /* Build configuration list for PBXNativeTarget "Wellington Bus StopsTests" */;
+			buildPhases = (
+				49F1BA8F1CF94B4E0078AAE7 /* Sources */,
+				49F1BA901CF94B4E0078AAE7 /* Frameworks */,
+				49F1BA911CF94B4E0078AAE7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				49F1BA951CF94B4E0078AAE7 /* PBXTargetDependency */,
+			);
+			name = "Wellington Bus StopsTests";
+			productName = "Wellington Bus StopsTests";
+			productReference = 49F1BA931CF94B4E0078AAE7 /* Wellington Bus StopsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		49F1BA771CF94B4D0078AAE7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Wellington City Council API Extensions";
+				TargetAttributes = {
+					49F1BA7E1CF94B4D0078AAE7 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					49F1BA921CF94B4E0078AAE7 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 49F1BA7E1CF94B4D0078AAE7;
+					};
+				};
+			};
+			buildConfigurationList = 49F1BA7A1CF94B4D0078AAE7 /* Build configuration list for PBXProject "Wellington Bus Stops" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 49F1BA761CF94B4D0078AAE7;
+			productRefGroup = 49F1BA801CF94B4D0078AAE7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				49F1BA7E1CF94B4D0078AAE7 /* Wellington Bus Stops */,
+				49F1BA921CF94B4E0078AAE7 /* Wellington Bus StopsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		49F1BA7D1CF94B4D0078AAE7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49F1BA8A1CF94B4E0078AAE7 /* Assets.xcassets in Resources */,
+				49F1BA8D1CF94B4E0078AAE7 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49F1BA911CF94B4E0078AAE7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		49F1BA7B1CF94B4D0078AAE7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49F1BA851CF94B4E0078AAE7 /* ViewController.swift in Sources */,
+				49F1BA881CF94B4E0078AAE7 /* Wellington_Bus_Stops.xcdatamodeld in Sources */,
+				49F1BA831CF94B4D0078AAE7 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49F1BA8F1CF94B4E0078AAE7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49F1BA981CF94B4E0078AAE7 /* Wellington_Bus_StopsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		49F1BA951CF94B4E0078AAE7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 49F1BA7E1CF94B4D0078AAE7 /* Wellington Bus Stops */;
+			targetProxy = 49F1BA941CF94B4E0078AAE7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		49F1BA8B1CF94B4E0078AAE7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				49F1BA8C1CF94B4E0078AAE7 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		49F1BA9A1CF94B4E0078AAE7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		49F1BA9B1CF94B4E0078AAE7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		49F1BA9D1CF94B4E0078AAE7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Wellington Bus Stops/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "wccapps.Wellington-Bus-Stops";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		49F1BA9E1CF94B4E0078AAE7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Wellington Bus Stops/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "wccapps.Wellington-Bus-Stops";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		49F1BAA01CF94B4E0078AAE7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Wellington Bus StopsTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "wccapps.Wellington-Bus-StopsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wellington Bus Stops.app/Contents/MacOS/Wellington Bus Stops";
+			};
+			name = Debug;
+		};
+		49F1BAA11CF94B4E0078AAE7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Wellington Bus StopsTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "wccapps.Wellington-Bus-StopsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wellington Bus Stops.app/Contents/MacOS/Wellington Bus Stops";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		49F1BA7A1CF94B4D0078AAE7 /* Build configuration list for PBXProject "Wellington Bus Stops" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49F1BA9A1CF94B4E0078AAE7 /* Debug */,
+				49F1BA9B1CF94B4E0078AAE7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		49F1BA9C1CF94B4E0078AAE7 /* Build configuration list for PBXNativeTarget "Wellington Bus Stops" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49F1BA9D1CF94B4E0078AAE7 /* Debug */,
+				49F1BA9E1CF94B4E0078AAE7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		49F1BA9F1CF94B4E0078AAE7 /* Build configuration list for PBXNativeTarget "Wellington Bus StopsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49F1BAA01CF94B4E0078AAE7 /* Debug */,
+				49F1BAA11CF94B4E0078AAE7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		49F1BA861CF94B4E0078AAE7 /* Wellington_Bus_Stops.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				49F1BA871CF94B4E0078AAE7 /* Wellington_Bus_Stops.xcdatamodel */,
+			);
+			currentVersion = 49F1BA871CF94B4E0078AAE7 /* Wellington_Bus_Stops.xcdatamodel */;
+			path = Wellington_Bus_Stops.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 49F1BA771CF94B4D0078AAE7 /* Project object */;
+}
