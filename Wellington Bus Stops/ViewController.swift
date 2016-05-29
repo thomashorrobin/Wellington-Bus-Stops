@@ -14,9 +14,7 @@ class ViewController: NSViewController, MKMapViewDelegate {
 
     @IBAction func addStop(sender: AnyObject) {
         let alert = NSAlert()
-        alert.informativeText = "To add bus stop enter its number below and press okay"
-        alert.alertStyle = .InformationalAlertStyle
-        alert.messageText = "Bus Stop Number?"
+        alert.messageText = "Add to widget by bus stop number"
         alert.addButtonWithTitle("OK")
         alert.addButtonWithTitle("Cancel")
         let tf = NSTextField(frame: NSRect(x: 0, y: 0, width: 200, height: 24))
