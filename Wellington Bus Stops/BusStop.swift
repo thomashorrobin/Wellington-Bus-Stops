@@ -70,37 +70,6 @@ class BusStop: NSObject, MKAnnotation {
         task.resume()
     }
     
-    class func getStopsGeo(completion: (busStop: BusStop) -> ()) {
-        let getEndpoint: String = "https://www.metlink.org.nz/api/v1/StopNearby/-41.293034/174.777883"
-        let session = NSURLSession.sharedSession()
-        let url = NSURL(string: getEndpoint)!
-        let task = session.dataTaskWithURL(url, completionHandler: { ( data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
-            
-            // Make sure we get an OK response
-            guard let realResponse = response as? NSHTTPURLResponse where
-                realResponse.statusCode == 200 else {
-                    print("Not a 200 response")
-                    return
-            }
-            
-            // Read the JSON
-            do {
-                
-                // Parse the JSON to get the IP
-                let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSArray
-                
-                for j in jsonDictionary {
-                    let bs = BusStop(stop: j as! NSDictionary)
-                    completion(busStop: bs)
-                }
-            } catch {
-                print("bad things happened")
-            }
-        })
-        
-        task.resume()
-    }
-    
     class func getStopsCsv(completion: (busStop: BusStop) -> ()) {
         let file = NSBundle.mainBundle().pathForResource("stops", ofType:"txt")
         do {

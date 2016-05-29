@@ -28,9 +28,6 @@ class ViewController: NSViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
-//        BusStop.getStopsGeo({(busStop: BusStop) -> () in
-//            self.mapView.addAnnotation(busStop)
-//        })
         BusStop.getStopsCsv({(busStop: BusStop) -> () in
             self.mapView.addAnnotation(busStop)
         })
