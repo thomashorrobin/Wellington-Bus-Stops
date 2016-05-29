@@ -71,7 +71,7 @@ class BusStop: NSObject, MKAnnotation {
     }
     
     class func getStopsGeo(completion: (busStop: BusStop) -> ()) {
-        let getEndpoint: String = "https://www.metlink.org.nz/api/v1/StopNearby/-41.28916701/174.77593559000002"
+        let getEndpoint: String = "https://www.metlink.org.nz/api/v1/StopNearby/-41.293034/174.777883"
         let session = NSURLSession.sharedSession()
         let url = NSURL(string: getEndpoint)!
         let task = session.dataTaskWithURL(url, completionHandler: { ( data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
