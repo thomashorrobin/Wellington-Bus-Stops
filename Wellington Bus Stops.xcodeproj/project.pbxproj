@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		497689D01CFAAD85006DDFBD /* stops.txt in Resources */ = {isa = PBXBuildFile; fileRef = 497689CF1CFAAD85006DDFBD /* stops.txt */; };
 		49F1BA831CF94B4D0078AAE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F1BA821CF94B4D0078AAE7 /* AppDelegate.swift */; };
 		49F1BA851CF94B4E0078AAE7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F1BA841CF94B4D0078AAE7 /* ViewController.swift */; };
 		49F1BA881CF94B4E0078AAE7 /* Wellington_Bus_Stops.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49F1BA861CF94B4E0078AAE7 /* Wellington_Bus_Stops.xcdatamodeld */; };
@@ -58,6 +59,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		497689CF1CFAAD85006DDFBD /* stops.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stops.txt; sourceTree = "<group>"; };
 		49F1BA7F1CF94B4D0078AAE7 /* Wellington Bus Stops.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wellington Bus Stops.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49F1BA821CF94B4D0078AAE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49F1BA841CF94B4D0078AAE7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 		49F1BA811CF94B4D0078AAE7 /* Wellington Bus Stops */ = {
 			isa = PBXGroup;
 			children = (
+				497689CF1CFAAD85006DDFBD /* stops.txt */,
 				49F1BAA21CF94B890078AAE7 /* Wellington Bus Stops.entitlements */,
 				49F1BA821CF94B4D0078AAE7 /* AppDelegate.swift */,
 				49F1BA841CF94B4D0078AAE7 /* ViewController.swift */,
@@ -300,6 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49F1BA8A1CF94B4E0078AAE7 /* Assets.xcassets in Resources */,
+				497689D01CFAAD85006DDFBD /* stops.txt in Resources */,
 				49F1BA8D1CF94B4E0078AAE7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -614,6 +618,7 @@
 				49F1BAE21CF9554F0078AAE7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

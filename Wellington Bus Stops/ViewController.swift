@@ -33,6 +33,9 @@ class ViewController: NSViewController, MKMapViewDelegate {
         BusStop.getStopsGeo({(busStop: BusStop) -> () in
             self.mapView.addAnnotation(busStop)
         })
+        BusStop.getStopsCsv({(busStop: BusStop) -> () in
+            self.mapView.addAnnotation(busStop)
+        })
     }
     
     func addStop2(sms: String) -> Void {

@@ -100,4 +100,15 @@ class BusStop: NSObject, MKAnnotation {
         
         task.resume()
     }
+    
+    class func getStopsCsv(completion: (busStop: BusStop) -> ()) {
+        let file = NSBundle.mainBundle().pathForResource("stops", ofType:"txt")
+        do {
+            let text = try NSString(contentsOfFile: file!, encoding: NSUTF8StringEncoding) as String
+            let rawStudents = text.componentsSeparatedByString("\n")
+            print(rawStudents.count)
+        } catch _ {
+            print("do fucking something")
+        }
+    }
 }
