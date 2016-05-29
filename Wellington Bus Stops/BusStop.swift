@@ -104,9 +104,23 @@ class BusStop: NSObject, MKAnnotation {
     class func getStopsCsv(completion: (busStop: BusStop) -> ()) {
         let file = NSBundle.mainBundle().pathForResource("stops", ofType:"txt")
         do {
-            let text = try NSString(contentsOfFile: file!, encoding: NSUTF8StringEncoding) as String
-            let rawStudents = text.componentsSeparatedByString("\n")
-            print(rawStudents.count)
+            let csvFile = try NSString(contentsOfFile: file!, encoding: NSUTF8StringEncoding) as String
+            let csvLines = csvFile.componentsSeparatedByString("\n")
+            //for i in 1...1500 {
+            let endOfCsvFile = csvLines.count - 1
+            for i in 1...endOfCsvFile {
+                let line = csvLines[i]
+                if line != "" {
+                    let lineParts = line.componentsSeparatedByString(",")
+                    do {
+                        let lat:Double = Double(lineParts[4])!
+                        let long:Double = Double(lineParts[5])!
+                        let bs = BusStop(latitude: lat, longitude: long, busStopName: lineParts[2], sms: lineParts[0])
+                        completion(busStop: bs)
+                    }
+                }
+            }
+            print(csvLines.count)
         } catch _ {
             print("do fucking something")
         }
