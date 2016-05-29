@@ -10,7 +10,7 @@ import Cocoa
 import MapKit
 import CoreData
 
-class ViewController: NSViewController, MKMapViewDelegate {
+class ViewController: NSViewController, MKMapViewDelegate, NSTableViewDelegate, NSTableViewDataSource {
 
     @IBAction func addStop(sender: AnyObject) {
         let alert = NSAlert()
@@ -25,18 +25,37 @@ class ViewController: NSViewController, MKMapViewDelegate {
         }
     }
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var tableView: NSTableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
+        tableView.setDelegate(self)
+        tableView.setDataSource(self)
         BusStop.getStopsCsv({(busStop: BusStop) -> () in
             self.mapView.addAnnotation(busStop)
         })
+        populateBusStops()
+    }
+    
+    func numberOfRowsInTableView(tableView: NSTableView) -> Int {
+        return busStops.count //your data ist the array of data for each row
+    }
+    
+    func tableView(tableView: NSTableView, objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
+        
+        if tableColumn!.title == "Name" //if you have more columns
+        {
+            return busStops[row].valueForKey("name")
+        }
+        else  //second column
+        {
+            return busStops[row].valueForKey("sms")
+        }
     }
     
     func addStop2(sms: String) -> Void {
         BusStop.getStop(sms, completion: {(bs: BusStop) -> Void in
-//            self.saveBusStop(bs)
-            print(bs.name)
+            self.saveBusStop(bs)
         })
     }
     
@@ -74,6 +93,30 @@ class ViewController: NSViewController, MKMapViewDelegate {
         } catch let error as NSError  {
             print("Could not save \(error), \(error.userInfo)")
         }
+    }
+    
+    func populateBusStops() {
+        
+        //1
+        let appDelegate =
+            NSApplication.sharedApplication().delegate as! AppDelegate
+        
+        let managedContext = appDelegate.managedObjectContext
+        
+        //2
+        let fetchRequest = NSFetchRequest(entityName: "BusStop")
+        
+        //3
+        do {
+            let results =
+                try managedContext.executeFetchRequest(fetchRequest)
+            self.busStops = results as! [NSManagedObject]
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        
+        //4 - table refeash
+        tableView.reloadData()
     }
 }
 
