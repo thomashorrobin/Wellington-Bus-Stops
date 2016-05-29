@@ -1644,7 +1644,7 @@ TAIT2,TAIT2, Taita Station - Platform 2,Taita Stn 2,-41.18031902,174.960668,5,,0
 6123,6123, Rintoul Street (near 191),RintoulSt at 191,-41.31949713,174.7779853,2,,0,,Pacific/Auckland
 8105,8105, Parliament Street at Laery Street,ParliamentSt at Laery,-41.21094105,174.892172,4,,0,,Pacific/Auckland
 1966,1966, Harley Street (near 54),HarleySt at 54,-40.9654514,175.6326909,14,,0,,Pacific/Auckland
-8165,8165," Waterloo Station - Oxford Terrace, Stop B",Waterloo Stn-B,-41.21343416,174.9211098,4,,0,,Pacific/Auckland
+8165,8165, Waterloo Station - Oxford Terrace Stop B,Waterloo Stn-B,-41.21343416,174.9211098,4,,0,,Pacific/Auckland
 7144,7144, Murchison Street at Irwell Street,MurchisonSt at Irwell,-41.33655778,174.7638696,3,,0,,Pacific/Auckland
 5349,5349, Montgomery Ave at Alanbrooke Place (near 51),MontgomeryAve at 51,-41.27959918,174.7306522,3,,0,,Pacific/Auckland
 5008,5008, Willis Street - Grand Arcade,WillisSt at GrandArc,-41.28674127,174.7760208,1,,0,,Pacific/Auckland
