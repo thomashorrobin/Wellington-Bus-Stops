@@ -89,7 +89,6 @@ class BusStop: NSObject, MKAnnotation {
                     }
                 }
             }
-            print(csvLines.count)
         } catch _ {
             print("do fucking something")
         }
