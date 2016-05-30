@@ -14,7 +14,7 @@ class ViewController: NSViewController, MKMapViewDelegate, NSTableViewDelegate, 
 
     @IBAction func addStop(sender: AnyObject) {
         let alert = NSAlert()
-        alert.messageText = "Add to widget by bus stop number"
+        alert.messageText = "Add stop to widget by bus stop number"
         alert.addButtonWithTitle("OK")
         alert.addButtonWithTitle("Cancel")
         let tf = NSTextField(frame: NSRect(x: 0, y: 0, width: 200, height: 24))
