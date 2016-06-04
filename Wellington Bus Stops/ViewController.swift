@@ -64,6 +64,34 @@ class ViewController: NSViewController, MKMapViewDelegate, NSTableViewDelegate, 
         })
     }
     
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        if annotation is MKUserLocation {
+            return nil
+        }
+        
+        let reuseId = "pin"
+        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
+        
+        if pinView == nil {
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView!.canShowCallout = true
+        }
+        
+        let bs = annotation as! BusStopLatLng
+        
+        let button = NSButton()
+        button.title = "hello button"
+        button.target = bs
+        
+        button.action = #selector(bs.launchDepartureBoard)
+        
+        pinView?.rightCalloutAccessoryView = button
+        
+        
+        return pinView
+    }
+    
     var busStops = [NSManagedObject]()
 
     override var representedObject: AnyObject? {

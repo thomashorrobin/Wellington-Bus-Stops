@@ -23,6 +23,12 @@ class BusStopLatLng: NSObject, MKAnnotation {
         return name
     }
     
+    @objc
+    func launchDepartureBoard(sender: AnyObject?) {
+        let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.openNewDepartureBoardWindow(sms)
+    }
+    
     var coordinate: CLLocationCoordinate2D {
         return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }

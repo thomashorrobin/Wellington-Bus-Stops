@@ -26,8 +26,6 @@
 		49F1BADD1CF9554F0078AAE7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49F1BADB1CF9554F0078AAE7 /* InfoPlist.strings */; };
 		49F1BAE01CF9554F0078AAE7 /* Welly Bus Stops.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 49F1BAC91CF9554F0078AAE7 /* Welly Bus Stops.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		49F1BAE61CF95E750078AAE7 /* BusStopLatLng.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F1BAE51CF95E750078AAE7 /* BusStopLatLng.swift */; };
-		49F1BAE71CF95E750078AAE7 /* BusStopLatLng.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F1BAE51CF95E750078AAE7 /* BusStopLatLng.swift */; };
-		49F1BAE81CF95E750078AAE7 /* BusStopLatLng.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F1BAE51CF95E750078AAE7 /* BusStopLatLng.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -359,7 +357,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49F1BAE71CF95E750078AAE7 /* BusStopLatLng.swift in Sources */,
 				49F1BA981CF94B4E0078AAE7 /* Wellington_Bus_StopsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -370,7 +367,6 @@
 			files = (
 				497689D41CFC2268006DDFBD /* BusStop.swift in Sources */,
 				4943CB471D029236007F46C6 /* Wellington_Bus_Stops.xcdatamodeld in Sources */,
-				49F1BAE81CF95E750078AAE7 /* BusStopLatLng.swift in Sources */,
 				49F1BAD11CF9554F0078AAE7 /* TodayViewController.swift in Sources */,
 				49F1BAD31CF9554F0078AAE7 /* ListRowViewController.swift in Sources */,
 			);
