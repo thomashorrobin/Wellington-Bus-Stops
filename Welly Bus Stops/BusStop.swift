@@ -8,7 +8,7 @@
 
 import Foundation
 
-class BusStop2: NSObject {
+class BusStop: NSObject {
     var name: String
     var sms: String
     
@@ -26,7 +26,7 @@ class BusStop2: NSObject {
         self.sms = stop["Sms"] as! String!
     }
     
-    class func getStop(sms: String, completion: (busStop: BusStop2) -> ()) {
+    class func getStop(sms: String, completion: (busStop: BusStop) -> ()) {
         let getEndpoint: String = "https://www.metlink.org.nz/api/v1/Stop/" + sms.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet())!
         let session = NSURLSession.sharedSession()
         let url = NSURL(string: getEndpoint)!
@@ -44,7 +44,7 @@ class BusStop2: NSObject {
                 
                 // Parse the JSON to get the IP
                 let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
-                let bs = BusStop2(stop: jsonDictionary)
+                let bs = BusStop(stop: jsonDictionary)
                 completion(busStop: bs)
             } catch {
                 print("bad things happened")

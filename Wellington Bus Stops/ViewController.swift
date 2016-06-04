@@ -117,7 +117,7 @@ class ViewController: NSViewController, MKMapViewDelegate, NSTableViewDelegate, 
         } catch let error as NSError {
             print("Could not fetch \(error), \(error.userInfo)")
         }
-        
+        print(self.busStops.count)
         //4 - table refeash
         tableView.reloadData()
     }

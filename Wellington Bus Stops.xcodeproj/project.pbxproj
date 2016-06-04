@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4943CB471D029236007F46C6 /* Wellington_Bus_Stops.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49F1BA861CF94B4E0078AAE7 /* Wellington_Bus_Stops.xcdatamodeld */; };
 		497689D01CFAAD85006DDFBD /* stops.txt in Resources */ = {isa = PBXBuildFile; fileRef = 497689CF1CFAAD85006DDFBD /* stops.txt */; };
 		497689D41CFC2268006DDFBD /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497689D31CFC2268006DDFBD /* BusStop.swift */; };
 		49F1BA831CF94B4D0078AAE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F1BA821CF94B4D0078AAE7 /* AppDelegate.swift */; };
@@ -262,6 +263,9 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 6H77GT49V5;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.Mac = {
+								enabled = 1;
+							};
 							com.apple.Maps.Mac = {
 								enabled = 1;
 							};
@@ -277,6 +281,11 @@
 					49F1BAC81CF9554F0078AAE7 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 6H77GT49V5;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.Mac = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -356,6 +365,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				497689D41CFC2268006DDFBD /* BusStop.swift in Sources */,
+				4943CB471D029236007F46C6 /* Wellington_Bus_Stops.xcdatamodeld in Sources */,
 				49F1BAE81CF95E750078AAE7 /* BusStopLatLng.swift in Sources */,
 				49F1BAD11CF9554F0078AAE7 /* TodayViewController.swift in Sources */,
 				49F1BAD31CF9554F0078AAE7 /* ListRowViewController.swift in Sources */,
