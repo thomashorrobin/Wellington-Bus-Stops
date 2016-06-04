@@ -9,6 +9,7 @@
 import Cocoa
 import MapKit
 import CoreData
+import CoreLocation
 
 class ViewController: NSViewController, MKMapViewDelegate, NSTableViewDelegate, NSTableViewDataSource {
 
@@ -35,6 +36,8 @@ class ViewController: NSViewController, MKMapViewDelegate, NSTableViewDelegate, 
             self.mapView.addAnnotation(busStop)
         })
         populateBusStops()
+        let wellingtonRegionMKView = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: -41.286103, longitude: 174.775535), span: MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03))
+        mapView.setRegion(wellingtonRegionMKView, animated: true)
     }
     
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
