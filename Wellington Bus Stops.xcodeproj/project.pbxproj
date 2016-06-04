@@ -23,9 +23,9 @@
 		49F1BAD91CF9554F0078AAE7 /* ListRowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49F1BAD71CF9554F0078AAE7 /* ListRowViewController.xib */; };
 		49F1BADD1CF9554F0078AAE7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49F1BADB1CF9554F0078AAE7 /* InfoPlist.strings */; };
 		49F1BAE01CF9554F0078AAE7 /* Welly Bus Stops.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 49F1BAC91CF9554F0078AAE7 /* Welly Bus Stops.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		49F1BAE61CF95E750078AAE7 /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F1BAE51CF95E750078AAE7 /* BusStop.swift */; };
-		49F1BAE71CF95E750078AAE7 /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F1BAE51CF95E750078AAE7 /* BusStop.swift */; };
-		49F1BAE81CF95E750078AAE7 /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F1BAE51CF95E750078AAE7 /* BusStop.swift */; };
+		49F1BAE61CF95E750078AAE7 /* BusStopLatLng.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F1BAE51CF95E750078AAE7 /* BusStopLatLng.swift */; };
+		49F1BAE71CF95E750078AAE7 /* BusStopLatLng.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F1BAE51CF95E750078AAE7 /* BusStopLatLng.swift */; };
+		49F1BAE81CF95E750078AAE7 /* BusStopLatLng.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F1BAE51CF95E750078AAE7 /* BusStopLatLng.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,7 +83,7 @@
 		49F1BAD81CF9554F0078AAE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ListRowViewController.xib; sourceTree = "<group>"; };
 		49F1BADA1CF9554F0078AAE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49F1BADC1CF9554F0078AAE7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		49F1BAE51CF95E750078AAE7 /* BusStop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStop.swift; sourceTree = "<group>"; };
+		49F1BAE51CF95E750078AAE7 /* BusStopLatLng.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStopLatLng.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,7 +146,7 @@
 				49F1BA8B1CF94B4E0078AAE7 /* Main.storyboard */,
 				49F1BA8E1CF94B4E0078AAE7 /* Info.plist */,
 				49F1BA861CF94B4E0078AAE7 /* Wellington_Bus_Stops.xcdatamodeld */,
-				49F1BAE51CF95E750078AAE7 /* BusStop.swift */,
+				49F1BAE51CF95E750078AAE7 /* BusStopLatLng.swift */,
 			);
 			path = "Wellington Bus Stops";
 			sourceTree = "<group>";
@@ -335,7 +335,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49F1BAE61CF95E750078AAE7 /* BusStop.swift in Sources */,
+				49F1BAE61CF95E750078AAE7 /* BusStopLatLng.swift in Sources */,
 				49F1BA851CF94B4E0078AAE7 /* ViewController.swift in Sources */,
 				49F1BA881CF94B4E0078AAE7 /* Wellington_Bus_Stops.xcdatamodeld in Sources */,
 				49F1BA831CF94B4D0078AAE7 /* AppDelegate.swift in Sources */,
@@ -346,7 +346,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49F1BAE71CF95E750078AAE7 /* BusStop.swift in Sources */,
+				49F1BAE71CF95E750078AAE7 /* BusStopLatLng.swift in Sources */,
 				49F1BA981CF94B4E0078AAE7 /* Wellington_Bus_StopsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -356,7 +356,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				497689D41CFC2268006DDFBD /* BusStop.swift in Sources */,
-				49F1BAE81CF95E750078AAE7 /* BusStop.swift in Sources */,
+				49F1BAE81CF95E750078AAE7 /* BusStopLatLng.swift in Sources */,
 				49F1BAD11CF9554F0078AAE7 /* TodayViewController.swift in Sources */,
 				49F1BAD31CF9554F0078AAE7 /* ListRowViewController.swift in Sources */,
 			);

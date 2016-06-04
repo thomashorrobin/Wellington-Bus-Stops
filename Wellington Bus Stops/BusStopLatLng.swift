@@ -9,7 +9,7 @@
 import Foundation
 import MapKit
 
-class BusStop: NSObject, MKAnnotation {
+class BusStopLatLng: NSObject, MKAnnotation {
     var name: String
     var sms: String
     var latitude: Double
@@ -42,7 +42,7 @@ class BusStop: NSObject, MKAnnotation {
         
     }
     
-    class func getStop(sms: String, completion: (busStop: BusStop) -> ()) {
+    class func getStop(sms: String, completion: (busStop: BusStopLatLng) -> ()) {
         let getEndpoint: String = "https://www.metlink.org.nz/api/v1/Stop/" + sms.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet())!
         let session = NSURLSession.sharedSession()
         let url = NSURL(string: getEndpoint)!
@@ -60,7 +60,7 @@ class BusStop: NSObject, MKAnnotation {
                 
                 // Parse the JSON to get the IP
                 let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
-                let bs = BusStop(stop: jsonDictionary)
+                let bs = BusStopLatLng(stop: jsonDictionary)
                 completion(busStop: bs)
             } catch {
                 print("bad things happened")
@@ -70,7 +70,7 @@ class BusStop: NSObject, MKAnnotation {
         task.resume()
     }
     
-    class func getStopsCsv(completion: (busStop: BusStop) -> ()) {
+    class func getStopsCsv(completion: (busStop: BusStopLatLng) -> ()) {
         let file = NSBundle.mainBundle().pathForResource("stops", ofType:"txt")
         do {
             let csvFile = try NSString(contentsOfFile: file!, encoding: NSUTF8StringEncoding) as String
@@ -84,7 +84,7 @@ class BusStop: NSObject, MKAnnotation {
                     do {
                         let lat:Double = Double(lineParts[4])!
                         let long:Double = Double(lineParts[5])!
-                        let bs = BusStop(latitude: lat, longitude: long, busStopName: lineParts[2], sms: lineParts[0])
+                        let bs = BusStopLatLng(latitude: lat, longitude: long, busStopName: lineParts[2], sms: lineParts[0])
                         completion(busStop: bs)
                     }
                 }

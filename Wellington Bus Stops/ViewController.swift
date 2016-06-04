@@ -31,7 +31,7 @@ class ViewController: NSViewController, MKMapViewDelegate, NSTableViewDelegate, 
         mapView.delegate = self
         tableView.setDelegate(self)
         tableView.setDataSource(self)
-        BusStop.getStopsCsv({(busStop: BusStop) -> () in
+        BusStopLatLng.getStopsCsv({(busStop: BusStopLatLng) -> () in
             self.mapView.addAnnotation(busStop)
         })
         populateBusStops()
@@ -54,7 +54,7 @@ class ViewController: NSViewController, MKMapViewDelegate, NSTableViewDelegate, 
     }
     
     func addStop2(sms: String) -> Void {
-        BusStop.getStop(sms, completion: {(bs: BusStop) -> Void in
+        BusStopLatLng.getStop(sms, completion: {(bs: BusStopLatLng) -> Void in
             self.saveBusStop(bs)
         })
     }
@@ -67,7 +67,7 @@ class ViewController: NSViewController, MKMapViewDelegate, NSTableViewDelegate, 
         }
     }
 
-    func saveBusStop(busStop: BusStop) {
+    func saveBusStop(busStop: BusStopLatLng) {
         //1
         let appDelegate =
             NSApplication.sharedApplication().delegate as! AppDelegate
