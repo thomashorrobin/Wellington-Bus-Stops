@@ -1,4 +1,4 @@
 /* Display name and description for this extension. */
-"CFBundleDisplayName" = "Welly Bus Stops";
-"com.apple.notificationcenter.widget.description" = "Sample description";
+"CFBundleDisplayName" = "Wellington Bus Stops";
+"com.apple.notificationcenter.widget.description" = "An app to bring Wellington bus stop and timetable information to your Notifications Center";
 
