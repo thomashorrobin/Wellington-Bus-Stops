@@ -675,15 +675,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="860" height="470"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <mapView ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ckZ-ms-E5j">
+                            <mapView mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ckZ-ms-E5j">
                                 <rect key="frame" x="20" y="17" width="537" height="406"/>
                             </mapView>
-                            <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z4q-NL-6vq">
+                            <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z4q-NL-6vq">
                                 <rect key="frame" x="565" y="19" width="276" height="404"/>
                                 <subviews>
-                                    <scrollView ambiguous="YES" misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YTd-fz-GlH">
+                                    <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YTd-fz-GlH">
                                         <rect key="frame" x="0.0" y="0.0" width="276" height="404"/>
-                                        <clipView key="contentView" ambiguous="YES" id="xWt-u5-GYb">
+                                        <clipView key="contentView" id="xWt-u5-GYb">
                                             <rect key="frame" x="1" y="0.0" width="274" height="403"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
@@ -726,11 +726,11 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </clipView>
                                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="cSa-eH-AaN">
-                                            <rect key="frame" x="1" y="387" width="274" height="16"/>
+                                            <rect key="frame" x="1" y="7" width="0.0" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="3up-L1-1zm">
-                                            <rect key="frame" x="224" y="17" width="15" height="102"/>
+                                            <rect key="frame" x="-15" y="23" width="16" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <tableHeaderView key="headerView" id="t7I-Da-CrA">
@@ -746,7 +746,7 @@
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
-                            <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Kg-pa-7Nc">
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Kg-pa-7Nc">
                                 <rect key="frame" x="822" y="430" width="19" height="21"/>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="778-IO-0vb">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -756,14 +756,17 @@
                                     <action selector="addStop:" target="XfG-lQ-9wD" id="YfD-yx-f4C"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qJ4-7O-uBB">
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qJ4-7O-uBB">
                                 <rect key="frame" x="795" y="430" width="19" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="19" id="3iH-vr-TGn"/>
+                                </constraints>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="T9Y-6F-hTY">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CMS-f4-v2d">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CMS-f4-v2d">
                                 <rect key="frame" x="18" y="433" width="771" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Use this map to find your bus stops. Add bus stops by clicking the pin =&gt; view =&gt; add to widget" placeholderString="" id="lYI-RH-vy6">
                                     <font key="font" metaFont="system"/>
@@ -773,14 +776,22 @@
                             </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="CMS-f4-v2d" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="4ZV-pG-h1p"/>
-                            <constraint firstItem="ckZ-ms-E5j" firstAttribute="top" secondItem="CMS-f4-v2d" secondAttribute="bottom" constant="10" id="9uS-yu-mkF"/>
+                            <constraint firstItem="8Kg-pa-7Nc" firstAttribute="leading" secondItem="qJ4-7O-uBB" secondAttribute="trailing" constant="8" symbolic="YES" id="0oI-0U-kw4"/>
+                            <constraint firstItem="ckZ-ms-E5j" firstAttribute="top" secondItem="z4q-NL-6vq" secondAttribute="top" id="3hG-A0-x1b"/>
+                            <constraint firstItem="CMS-f4-v2d" firstAttribute="baseline" secondItem="qJ4-7O-uBB" secondAttribute="baseline" id="7EP-wi-ifr"/>
+                            <constraint firstItem="CMS-f4-v2d" firstAttribute="leading" secondItem="ckZ-ms-E5j" secondAttribute="leading" id="9JU-mA-qQs"/>
+                            <constraint firstItem="qJ4-7O-uBB" firstAttribute="baseline" secondItem="8Kg-pa-7Nc" secondAttribute="baseline" id="B3K-c1-p71"/>
+                            <constraint firstItem="z4q-NL-6vq" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="565" id="JZz-Dd-okH"/>
                             <constraint firstAttribute="bottom" secondItem="ckZ-ms-E5j" secondAttribute="bottom" constant="17" id="Lor-iX-lwz"/>
+                            <constraint firstItem="CMS-f4-v2d" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" symbolic="YES" id="O2v-5Z-MVs"/>
+                            <constraint firstItem="8Kg-pa-7Nc" firstAttribute="trailing" secondItem="z4q-NL-6vq" secondAttribute="trailing" id="PTC-im-aXl"/>
+                            <constraint firstAttribute="trailing" secondItem="qJ4-7O-uBB" secondAttribute="trailing" constant="46" id="Rpv-G5-T5J"/>
                             <constraint firstAttribute="trailing" secondItem="YTd-fz-GlH" secondAttribute="trailing" constant="19" id="S6O-Gi-mdt"/>
+                            <constraint firstItem="z4q-NL-6vq" firstAttribute="top" secondItem="8Kg-pa-7Nc" secondAttribute="bottom" constant="8" symbolic="YES" id="Ubj-gz-XTR"/>
                             <constraint firstAttribute="bottom" secondItem="YTd-fz-GlH" secondAttribute="bottom" constant="19" id="bqq-Xt-rv0"/>
-                            <constraint firstAttribute="trailing" secondItem="8Kg-pa-7Nc" secondAttribute="trailing" constant="19" id="dGb-4H-uAc"/>
-                            <constraint firstAttribute="trailing" secondItem="qJ4-7O-uBB" secondAttribute="trailing" constant="46" id="iZ2-Dc-CMi"/>
+                            <constraint firstItem="qJ4-7O-uBB" firstAttribute="leading" secondItem="CMS-f4-v2d" secondAttribute="trailing" constant="8" symbolic="YES" id="jA6-Q8-AYK"/>
                             <constraint firstItem="ckZ-ms-E5j" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="lVl-V6-GO8"/>
+                            <constraint firstItem="z4q-NL-6vq" firstAttribute="leading" secondItem="ckZ-ms-E5j" secondAttribute="trailing" constant="8" symbolic="YES" id="rPi-9Z-qSz"/>
                         </constraints>
                     </view>
                     <connections>
