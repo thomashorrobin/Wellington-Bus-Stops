@@ -118,6 +118,9 @@ class ViewController: NSViewController, MKMapViewDelegate, NSTableViewDelegate, 
             print("Could not fetch \(error), \(error.userInfo)")
         }
         print(self.busStops.count)
+        self.busStops.forEach({(a:NSManagedObject) -> Void in
+            print(a.valueForKey("name"))
+        })
         //4 - table refeash
         tableView.reloadData()
     }

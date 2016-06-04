@@ -28,6 +28,7 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
         do {
             let fetchRequest = NSFetchRequest(entityName: "BusStop")
             let results = try managedObjectContext.executeFetchRequest(fetchRequest)
+            print(results.count)
             for managedObject in results {
                 busStops.append(BusStop(busStopName: managedObject.valueForKey("name")!.description, sms: managedObject.valueForKey("sms")!.description))
             }
@@ -145,9 +146,9 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
     
     lazy var applicationDocumentsDirectory: NSURL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "wccapps.Wellington_Bus_Stops" in the user's Application Support directory.
-        let urls = NSFileManager.defaultManager().URLsForDirectory(.ApplicationSupportDirectory, inDomains: .UserDomainMask)
-        let appSupportURL = urls[urls.count - 1]
-        return appSupportURL.URLByAppendingPathComponent("group.wccapps.bus_stop_data")
+        let urls = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier("group.wccapps.bus_stop_data") //(.ApplicationSupportDirectory, inDomains: .UserDomainMask)
+        let appSupportURL = urls
+        return appSupportURL!.URLByAppendingPathComponent("group.wccapps.bus_stop_data")
     }()
     
     lazy var managedObjectModel: NSManagedObjectModel = {
