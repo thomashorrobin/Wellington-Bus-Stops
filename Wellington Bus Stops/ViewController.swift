@@ -23,6 +23,8 @@ class ViewController: NSViewController, MKMapViewDelegate, NSTableViewDelegate, 
         let response: NSModalResponse = alert.runModal()
         if response == NSAlertFirstButtonReturn {
             addStop2(tf.stringValue)
+            let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+            appDelegate.openNewDepartureBoardWindow(tf.stringValue)
         }
     }
     @IBOutlet weak var mapView: MKMapView!

@@ -11,7 +11,21 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-
+    var departureBoardWindows = [NSWindowController]()
+    
+    func openNewDepartureBoardWindow(sms: String) {
+        let storyboard = NSStoryboard(name: "Main",bundle: nil)
+        
+        if let vc = storyboard.instantiateControllerWithIdentifier("departureBoard") as? DepartureBoardViewController{
+            let newWindow = NSWindow(contentViewController: vc)
+            vc.populateDepartureBoard(sms)
+            newWindow.title = "Stop: " + sms
+            newWindow.makeKeyAndOrderFront(self)
+            let controller = NSWindowController(window: newWindow)
+            departureBoardWindows.append(controller)
+            controller.showWindow(self)
+        }
+    }
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application

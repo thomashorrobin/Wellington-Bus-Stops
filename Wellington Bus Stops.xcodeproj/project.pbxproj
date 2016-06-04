@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4943CB471D029236007F46C6 /* Wellington_Bus_Stops.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49F1BA861CF94B4E0078AAE7 /* Wellington_Bus_Stops.xcdatamodeld */; };
+		4943CB4B1D02E87B007F46C6 /* DepartureBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4943CB4A1D02E87B007F46C6 /* DepartureBoardViewController.swift */; };
 		497689D01CFAAD85006DDFBD /* stops.txt in Resources */ = {isa = PBXBuildFile; fileRef = 497689CF1CFAAD85006DDFBD /* stops.txt */; };
 		497689D41CFC2268006DDFBD /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497689D31CFC2268006DDFBD /* BusStop.swift */; };
 		49F1BA831CF94B4D0078AAE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F1BA821CF94B4D0078AAE7 /* AppDelegate.swift */; };
@@ -61,6 +62,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4943CB4A1D02E87B007F46C6 /* DepartureBoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartureBoardViewController.swift; sourceTree = "<group>"; };
 		497689CF1CFAAD85006DDFBD /* stops.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stops.txt; sourceTree = "<group>"; };
 		497689D31CFC2268006DDFBD /* BusStop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStop.swift; sourceTree = "<group>"; };
 		49F1BA7F1CF94B4D0078AAE7 /* Wellington Bus Stops.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wellington Bus Stops.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,6 +150,7 @@
 				49F1BA8E1CF94B4E0078AAE7 /* Info.plist */,
 				49F1BA861CF94B4E0078AAE7 /* Wellington_Bus_Stops.xcdatamodeld */,
 				49F1BAE51CF95E750078AAE7 /* BusStopLatLng.swift */,
+				4943CB4A1D02E87B007F46C6 /* DepartureBoardViewController.swift */,
 			);
 			path = "Wellington Bus Stops";
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 			files = (
 				49F1BAE61CF95E750078AAE7 /* BusStopLatLng.swift in Sources */,
 				49F1BA851CF94B4E0078AAE7 /* ViewController.swift in Sources */,
+				4943CB4B1D02E87B007F46C6 /* DepartureBoardViewController.swift in Sources */,
 				49F1BA881CF94B4E0078AAE7 /* Wellington_Bus_Stops.xcdatamodeld in Sources */,
 				49F1BA831CF94B4D0078AAE7 /* AppDelegate.swift in Sources */,
 			);
