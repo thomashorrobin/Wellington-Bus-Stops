@@ -28,7 +28,6 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
         do {
             let fetchRequest = NSFetchRequest(entityName: "BusStop")
             let results = try managedObjectContext.executeFetchRequest(fetchRequest)
-            print(results.count)
             for managedObject in results {
                 busStops.append(BusStop(busStopName: managedObject.valueForKey("name")!.description, sms: managedObject.valueForKey("sms")!.description))
             }
