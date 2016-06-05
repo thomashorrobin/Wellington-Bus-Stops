@@ -31,6 +31,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let controller = NSWindowController(window: newWindow)
             departureBoardWindows.append(controller)
             controller.showWindow(self)
+            tablesToRefresh.append(vc)
         }
     }
     

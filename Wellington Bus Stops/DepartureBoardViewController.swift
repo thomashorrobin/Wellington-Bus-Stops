@@ -8,11 +8,15 @@
 
 import Cocoa
 
-class DepartureBoardViewController: NSViewController {
+class DepartureBoardViewController: NSViewController, ITableDataRefreshable {
     
     var busStop: BusStopLatLng?
     var savedToWidget: Bool
     var sms: String
+    
+    func refreshTableData() {
+        print("not implemented yet")
+    }
 
     @IBOutlet weak var busStopNameLabel: NSTextField!
     @IBOutlet weak var addOrRemoveBtn: NSButton!
