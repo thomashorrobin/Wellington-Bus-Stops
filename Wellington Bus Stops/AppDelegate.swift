@@ -12,6 +12,13 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     var departureBoardWindows = [NSWindowController]()
+    var tablesToRefresh = [ITableDataRefreshable]()
+    
+    func refreshTableData() {
+        for dataTable in tablesToRefresh {
+            dataTable.refreshTableData()
+        }
+    }
     
     func openNewDepartureBoardWindow(sms: String) {
         let storyboard = NSStoryboard(name: "Main",bundle: nil)

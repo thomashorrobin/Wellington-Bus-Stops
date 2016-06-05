@@ -20,6 +20,8 @@ class DepartureBoardViewController: NSViewController {
         let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.saveBusStop(busStop!, completetion: {(busStop: NSManagedObject) -> Void in
             self.savedToWidget = true
+            print(busStop.valueForKey("name"))
+            appDelegate.refreshTableData()
             self.addOrRemoveBtn.stringValue = "remove"
         })
     }

@@ -11,7 +11,12 @@ import MapKit
 import CoreData
 import CoreLocation
 
-class ViewController: NSViewController, MKMapViewDelegate, NSTableViewDelegate, NSTableViewDataSource {
+class ViewController: NSViewController, MKMapViewDelegate, NSTableViewDelegate, NSTableViewDataSource, ITableDataRefreshable {
+    
+    func refreshTableData() {
+        busStops.removeAll()
+        populateBusStops()
+    }
 
     @IBAction func addStop(sender: AnyObject) {
         let alert = NSAlert()
@@ -40,6 +45,8 @@ class ViewController: NSViewController, MKMapViewDelegate, NSTableViewDelegate, 
         populateBusStops()
         let wellingtonRegionMKView = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: -41.286103, longitude: 174.775535), span: MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03))
         mapView.setRegion(wellingtonRegionMKView, animated: true)
+        let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.tablesToRefresh.append(self)
     }
     
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
