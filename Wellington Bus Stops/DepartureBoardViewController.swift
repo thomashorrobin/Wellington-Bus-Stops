@@ -9,8 +9,20 @@
 import Cocoa
 
 class DepartureBoardViewController: NSViewController {
+    
+    var busStop: BusStopLatLng?
+    var savedToWidget = false
 
     @IBOutlet weak var busStopNameLabel: NSTextField!
+    @IBOutlet weak var addOrRemoveBtn: NSButton!
+    
+    @IBAction func addOrRemoveBusStop(sender: NSButton) {
+        let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.saveBusStop(busStop!, completetion: {(busStop: NSManagedObject) -> Void in
+            self.savedToWidget = true
+            self.addOrRemoveBtn.stringValue = "remove"
+        })
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +32,11 @@ class DepartureBoardViewController: NSViewController {
     func populateDepartureBoard(sms: String) {
         BusStopLatLng.getStop(sms, completion: {(bs: BusStopLatLng) -> Void in
             self.busStopNameLabel.stringValue = bs.name
+            self.busStop = bs
         })
     }
     
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
 }

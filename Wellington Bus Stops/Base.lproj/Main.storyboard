@@ -672,11 +672,11 @@
             <objects>
                 <viewController storyboardIdentifier="departureBoard" id="oEz-lc-glL" customClass="DepartureBoardViewController" customModule="Wellington_Bus_Stops" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="iaa-o7-a3P">
-                        <rect key="frame" x="0.0" y="0.0" width="357" height="411"/>
+                        <rect key="frame" x="0.0" y="0.0" width="357" height="452"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="usR-JI-0RQ">
-                                <rect key="frame" x="18" y="374" width="321" height="17"/>
+                                <rect key="frame" x="18" y="415" width="321" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Loading..." id="TMj-fy-DZp">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -684,9 +684,9 @@
                                 </textFieldCell>
                             </textField>
                             <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xpk-Yl-4YO">
-                                <rect key="frame" x="20" y="20" width="317" height="346"/>
+                                <rect key="frame" x="20" y="61" width="317" height="346"/>
                                 <clipView key="contentView" ambiguous="YES" id="DKL-Kn-4k5">
-                                    <rect key="frame" x="1" y="23" width="315" height="322"/>
+                                    <rect key="frame" x="1" y="0.0" width="315" height="345"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="zqb-Ur-FAL" viewBased="YES" id="EZq-i5-IwD">
@@ -801,7 +801,7 @@
                                     <rect key="frame" x="1" y="329" width="315" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="m2L-3l-oYN">
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="m2L-3l-oYN">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -810,15 +810,26 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ygs-fU-7eG">
+                                <rect key="frame" x="270" y="13" width="65" height="32"/>
+                                <buttonCell key="cell" type="push" title="Add" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="L7O-up-QgV">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="addOrRemoveBusStop:" target="oEz-lc-glL" id="BN0-fm-Sj6"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="addOrRemoveBtn" destination="ygs-fU-7eG" id="MTG-aE-ucj"/>
                         <outlet property="busStopNameLabel" destination="usR-JI-0RQ" id="JjR-Cs-NQR"/>
                     </connections>
                 </viewController>
                 <customObject id="J1e-b2-pYI" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1195.5" y="379.5"/>
+            <point key="canvasLocation" x="1195.5" y="400"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
