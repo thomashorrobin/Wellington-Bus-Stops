@@ -11,7 +11,8 @@ import Cocoa
 class DepartureBoardViewController: NSViewController {
     
     var busStop: BusStopLatLng?
-    var savedToWidget = false
+    var savedToWidget: Bool
+    var sms: String
 
     @IBOutlet weak var busStopNameLabel: NSTextField!
     @IBOutlet weak var addOrRemoveBtn: NSButton!
@@ -30,7 +31,9 @@ class DepartureBoardViewController: NSViewController {
         // Do view setup here.
     }
     
-    func populateDepartureBoard(sms: String) {
+    func populateDepartureBoard(sms: String, savedToWidget: Bool) {
+        self.sms = sms
+        self.savedToWidget = savedToWidget
         BusStopLatLng.getStop(sms, completion: {(bs: BusStopLatLng) -> Void in
             self.busStopNameLabel.stringValue = bs.name
             self.busStop = bs
@@ -38,6 +41,8 @@ class DepartureBoardViewController: NSViewController {
     }
     
     required init?(coder: NSCoder) {
+        savedToWidget = false
+        sms = "4323"
         super.init(coder: coder)
     }
 }

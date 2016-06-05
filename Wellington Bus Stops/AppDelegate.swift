@@ -25,7 +25,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         if let vc = storyboard.instantiateControllerWithIdentifier("departureBoard") as? DepartureBoardViewController{
             let newWindow = NSWindow(contentViewController: vc)
-            vc.populateDepartureBoard(sms)
+            vc.populateDepartureBoard(sms, savedToWidget: true)
             newWindow.title = "Stop: " + sms
             newWindow.makeKeyAndOrderFront(self)
             let controller = NSWindowController(window: newWindow)
