@@ -109,7 +109,7 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
 
     func widgetList(list: NCWidgetListViewController!, shouldReorderRow row: Int) -> Bool {
         // Return true to allow the item to be reordered in the list by the user.
-        return true
+        return false
     }
 
     func widgetList(list: NCWidgetListViewController!, didReorderRow row: Int, toRow newIndex: Int) {
