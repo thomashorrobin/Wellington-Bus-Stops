@@ -60,7 +60,11 @@ class ViewController: NSViewController, MKMapViewDelegate, NSTableViewDelegate, 
     
     func addStop2(sms: String) -> Void {
         BusStopLatLng.getStop(sms, completion: {(bs: BusStopLatLng) -> Void in
-            self.saveBusStop(bs)
+            let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+            appDelegate.saveBusStop(bs, completetion: {(busStop: NSManagedObject) -> Void in
+                self.busStops.append(busStop)
+                self.tableView.reloadData()
+            })
         })
     }
     
@@ -98,34 +102,6 @@ class ViewController: NSViewController, MKMapViewDelegate, NSTableViewDelegate, 
     override var representedObject: AnyObject? {
         didSet {
         // Update the view, if already loaded.
-        }
-    }
-
-    func saveBusStop(busStop: BusStopLatLng) {
-        //1
-        let appDelegate =
-            NSApplication.sharedApplication().delegate as! AppDelegate
-        
-        let managedContext = appDelegate.managedObjectContext
-        
-        //2
-        let entity =  NSEntityDescription.entityForName("BusStop",
-                                                        inManagedObjectContext:managedContext)
-        
-        let bs = NSManagedObject(entity: entity!,
-                                     insertIntoManagedObjectContext: managedContext)
-        
-        //3
-        bs.setValue(busStop.name, forKey: "name")
-        bs.setValue(busStop.sms, forKey: "sms")
-        
-        //4
-        do {
-            try managedContext.save()
-            //5
-            busStops.append(bs)
-        } catch let error as NSError  {
-            print("Could not save \(error), \(error.userInfo)")
         }
     }
     

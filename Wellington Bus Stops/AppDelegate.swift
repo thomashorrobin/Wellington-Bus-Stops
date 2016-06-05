@@ -26,6 +26,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             controller.showWindow(self)
         }
     }
+    
+    func saveBusStop(busStop: BusStopLatLng, completetion: (busStop: NSManagedObject) -> Void) {
+        
+        let entity =  NSEntityDescription.entityForName("BusStop",
+                                                        inManagedObjectContext:managedObjectContext)
+        
+        let bs = NSManagedObject(entity: entity!,
+                                 insertIntoManagedObjectContext: managedObjectContext)
+        
+        bs.setValue(busStop.name, forKey: "name")
+        bs.setValue(busStop.sms, forKey: "sms")
+        
+        do {
+            try managedObjectContext.save()
+            completetion(busStop: bs)
+        } catch let error as NSError  {
+            print("Could not save \(error), \(error.userInfo)")
+        }
+    }
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
