@@ -81,8 +81,9 @@ class ViewController: NSViewController, MKMapViewDelegate, NSTableViewDelegate, 
         let bs = annotation as! BusStopLatLng
         
         let button = NSButton()
-        button.title = "hello button"
+        button.title = "show"
         button.target = bs
+        button.bezelStyle = NSBezelStyle.RecessedBezelStyle
         
         button.action = #selector(bs.launchDepartureBoard)
         
