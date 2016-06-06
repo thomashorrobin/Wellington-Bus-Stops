@@ -46,6 +46,7 @@ class ViewController: NSViewController, MKMapViewDelegate, NSTableViewDelegate, 
         mapView.delegate = self
         tableView.setDelegate(self)
         tableView.setDataSource(self)
+        tableView.doubleAction = #selector(ViewController.tableViewDoubleClick)
         BusStopLatLng.getStopsCsv({(busStop: BusStopLatLng) -> () in
             self.mapView.addAnnotation(busStop)
         })
@@ -54,6 +55,12 @@ class ViewController: NSViewController, MKMapViewDelegate, NSTableViewDelegate, 
         mapView.setRegion(wellingtonRegionMKView, animated: true)
         let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.tablesToRefresh.append(self)
+    }
+    
+    func tableViewDoubleClick(){
+        let sms = busStops[tableView.selectedRow].valueForKey("sms") as! String
+        let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.openNewDepartureBoardWindow(sms)
     }
     
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
