@@ -76,6 +76,39 @@ class BusStopLatLng: NSObject, MKAnnotation {
         task.resume()
     }
     
+    class func getDepartureTimes(sms: String, completion: (busStop: BusStopLatLng, departureTimes: [BusDeparture]) -> ()) {
+        let getEndpoint: String = "https://www.metlink.org.nz/api/v1/StopDepartures/" + sms.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet())!
+        let session = NSURLSession.sharedSession()
+        let url = NSURL(string: getEndpoint)!
+        let task = session.dataTaskWithURL(url, completionHandler: { ( data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+            
+            // Make sure we get an OK response
+            guard let realResponse = response as? NSHTTPURLResponse where
+                realResponse.statusCode == 200 else {
+                    print("Not a 200 response")
+                    return
+            }
+            
+            // Read the JSON
+            do {
+                
+                // Parse the JSON to get the IP
+                let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+                let bs = BusStopLatLng(stop: jsonDictionary["Stop"] as! NSDictionary)
+                var departures = [BusDeparture]()
+                let departuresArray = jsonDictionary["Services"] as! NSArray
+                for d in departuresArray {
+                    departures.append(BusDeparture(busDeparture: d as! NSDictionary))
+                }
+                completion(busStop: bs, departureTimes: departures)
+            } catch {
+                print("bad things happened")
+            }
+        })
+        
+        task.resume()
+    }
+    
     class func getStopsCsv(completion: (busStop: BusStopLatLng) -> ()) {
         let file = NSBundle.mainBundle().pathForResource("stops", ofType:"txt")
         do {
