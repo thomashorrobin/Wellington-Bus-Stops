@@ -19,6 +19,15 @@ class DepartureBoardViewController: NSViewController, ITableDataRefreshable, NST
     func refreshTableData() {
         print("not implemented yet")
     }
+    
+    func setSavedToWidgetStatus(savedToWidget: Bool){
+        self.savedToWidget = savedToWidget
+        if savedToWidget {
+            addOrRemoveBtn.title = "remove"
+        } else {
+            addOrRemoveBtn.title = "add"
+        }
+    }
 
     @IBOutlet weak var busStopNameLabel: NSTextField!
     @IBOutlet weak var tableView: NSTableView!
@@ -26,11 +35,15 @@ class DepartureBoardViewController: NSViewController, ITableDataRefreshable, NST
     
     @IBAction func addOrRemoveBusStop(sender: NSButton) {
         let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.saveBusStop(busStop!, completetion: {(busStop: NSManagedObject) -> Void in
-            self.savedToWidget = true
-            appDelegate.refreshTableData()
-            self.addOrRemoveBtn.title = "remove"
-        })
+        if !self.savedToWidget {
+            appDelegate.saveBusStop(busStop!, completetion: {(busStop: NSManagedObject) -> Void in
+                appDelegate.refreshTableData()
+                self.setSavedToWidgetStatus(true)
+            })
+        } else {
+            appDelegate.deleteBusStop(sms)
+            setSavedToWidgetStatus(false)
+        }
     }
     
     override func viewDidLoad() {

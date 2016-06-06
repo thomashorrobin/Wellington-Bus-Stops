@@ -72,6 +72,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 }
             }
             try managedObjectContext.save()
+            refreshTableData()
         } catch let error as NSError {
             print("Could not fetch \(error), \(error.userInfo)")
         }
