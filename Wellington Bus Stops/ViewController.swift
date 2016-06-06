@@ -32,6 +32,13 @@ class ViewController: NSViewController, MKMapViewDelegate, NSTableViewDelegate, 
             appDelegate.openNewDepartureBoardWindow(tf.stringValue)
         }
     }
+    @IBAction func deleteStop(sender: AnyObject) {
+        let sms = busStops[tableView.selectedRow].valueForKey("sms") as! String
+        let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.deleteBusStop(sms)
+        self.busStops.removeAll()
+        populateBusStops()
+    }
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tableView: NSTableView!
     override func viewDidLoad() {

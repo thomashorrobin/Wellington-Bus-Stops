@@ -53,6 +53,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             print("Could not save \(error), \(error.userInfo)")
         }
     }
+    
+    func deleteBusStop(sms: String) {
+        
+        let fetchRequest = NSFetchRequest(entityName: "BusStop")
+        
+        do {
+            let results = try managedObjectContext.executeFetchRequest(fetchRequest)
+            let managedObjects = results as! [NSManagedObject]
+            for managedObject in managedObjects {
+                if managedObject.valueForKey("sms") as! String == sms {
+                    managedObjectContext.deleteObject(managedObject)
+                }
+            }
+            try managedObjectContext.save()
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+    }
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
