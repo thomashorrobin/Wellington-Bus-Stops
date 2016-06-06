@@ -25,7 +25,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         if let vc = storyboard.instantiateControllerWithIdentifier("departureBoard") as? DepartureBoardViewController{
             let newWindow = NSWindow(contentViewController: vc)
-            vc.populateDepartureBoard(sms, savedToWidget: true)
+            vc.populateDepartureBoard(sms, savedToWidget: busStopExists(sms))
             newWindow.title = "Stop: " + sms
             newWindow.makeKeyAndOrderFront(self)
             let controller = NSWindowController(window: newWindow)
@@ -36,6 +36,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func saveBusStop(busStop: BusStopLatLng, completetion: (busStop: NSManagedObject) -> Void) {
+        
+        if busStopExists(busStop.sms) {
+            print("Bus stop: \(busStop.sms) already exisits. Can't be duplicated")
+            return
+        }
         
         let entity =  NSEntityDescription.entityForName("BusStop",
                                                         inManagedObjectContext:managedObjectContext)
@@ -70,6 +75,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         } catch let error as NSError {
             print("Could not fetch \(error), \(error.userInfo)")
         }
+    }
+    
+    func busStopExists(sms: String) -> Bool {
+        let fetchRequest = NSFetchRequest(entityName: "BusStop")
+        
+        do {
+            let results = try managedObjectContext.executeFetchRequest(fetchRequest)
+            let managedObjects = results as! [NSManagedObject]
+            for managedObject in managedObjects {
+                if managedObject.valueForKey("sms") as! String == sms {
+                    return true
+                }
+            }
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        return false
     }
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
