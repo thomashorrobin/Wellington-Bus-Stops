@@ -17,7 +17,8 @@ class DepartureBoardViewController: NSViewController, ITableDataRefreshable, NST
     var departures = [BusDeparture]()
     
     func refreshTableData() {
-        print("not implemented yet")
+        let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+        setSavedToWidgetStatus(appDelegate.busStopExists(sms))
     }
     
     func setSavedToWidgetStatus(savedToWidget: Bool){
