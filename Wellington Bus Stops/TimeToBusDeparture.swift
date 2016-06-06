@@ -12,6 +12,14 @@ struct TimeToBusDeparture {
     let secondsToDeparture: Int
     
     var description:String {
-        return secondsToDeparture.description
+        if secondsToDeparture < 90 {
+            return "Due"
+        } else if secondsToDeparture < 3600 {
+            let minutes: Int = secondsToDeparture / 60
+            return minutes.description + "mins"
+        } else {
+            let hours: Int = secondsToDeparture / 3600
+            return hours.description + "hrs"
+        }
     }
 }
