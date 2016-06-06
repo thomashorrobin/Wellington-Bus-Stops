@@ -16,6 +16,24 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
     var searchController: NCWidgetSearchViewController?
     var busStops = [BusStop]()
     
+    func deleteBusStop(sms: String) {
+        
+        let fetchRequest = NSFetchRequest(entityName: "BusStop")
+        
+        do {
+            let results = try managedObjectContext.executeFetchRequest(fetchRequest)
+            let managedObjects = results as! [NSManagedObject]
+            for managedObject in managedObjects {
+                if managedObject.valueForKey("sms") as! String == sms {
+                    managedObjectContext.deleteObject(managedObject)
+                }
+            }
+            try managedObjectContext.save()
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+    }
+    
     // MARK: - NSViewController
 
     override var nibName: String? {
@@ -123,6 +141,7 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
 
     func widgetList(list: NCWidgetListViewController!, didRemoveRow row: Int) {
         // The user has removed an item from the list.
+        deleteBusStop(busStops[row].sms)
     }
 
     // MARK: - NCWidgetSearchViewDelegate
