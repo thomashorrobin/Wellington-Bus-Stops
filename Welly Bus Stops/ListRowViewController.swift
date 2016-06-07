@@ -8,7 +8,11 @@
 
 import Cocoa
 
-class ListRowViewController: NSViewController {
+class ListRowViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
+    
+    var departureTimes = [BusDeparture]()
+    
+    @IBOutlet weak var tableView: NSTableView!
 
     override var nibName: String? {
         return "ListRowViewController"
@@ -16,8 +20,41 @@ class ListRowViewController: NSViewController {
 
     override func loadView() {
         super.loadView()
+        tableView.setDelegate(self)
+        tableView.setDataSource(self)
+        //let thisBusStop = self.representedObject as! BusStop
+        BusStop.getDepartureTimes("4323", completion: {(busStop: BusStop, departureTimes: [BusDeparture]) -> Void in
+            self.departureTimes.appendContentsOf(departureTimes)
+            dispatch_async(dispatch_get_main_queue(), {
+                self.tableView.reloadData()
+            })
+        })
 
         // Insert code here to customize the view
+    }
+    
+    func numberOfRowsInTableView(tableView: NSTableView) -> Int {
+        return departureTimes.count
+    }
+    
+    func tableView(tableView: NSTableView, objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
+        
+        if tableColumn!.title == "Route"
+        {
+            return departureTimes[row].route
+        }
+        else if tableColumn!.title == "Destination"
+        {
+            return departureTimes[row].destination
+        }
+        else if tableColumn!.title == "Departs"
+        {
+            return departureTimes[row].timeToDeparture.description
+        }
+        else
+        {
+            return "ERROR"
+        }
     }
 
 }
