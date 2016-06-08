@@ -43,8 +43,8 @@ class BusStopLatLng: NSObject, MKAnnotation {
     init(stop: NSDictionary) {
         self.name = stop["Name"] as! String!
         self.sms = stop["Sms"] as! String!
-        self.latitude = Double(stop["Lat"] as! String)!
-        self.longitude = Double(stop["Long"] as! String)!
+        self.latitude = stop["Lat"] as! Double
+        self.longitude = stop["Long"] as! Double
         
     }
     
