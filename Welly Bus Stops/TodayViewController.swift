@@ -34,6 +34,46 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
         }
     }
     
+    func busStopExists(sms: String) -> Bool {
+        let fetchRequest = NSFetchRequest(entityName: "BusStop")
+        
+        do {
+            let results = try managedObjectContext.executeFetchRequest(fetchRequest)
+            let managedObjects = results as! [NSManagedObject]
+            for managedObject in managedObjects {
+                if managedObject.valueForKey("sms") as! String == sms {
+                    return true
+                }
+            }
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        return false
+    }
+    
+    func saveBusStop(busStop: BusStop) {
+        
+        if busStopExists(busStop.sms) {
+            print("Bus stop: \(busStop.sms) already exisits. Can't be duplicated")
+            return
+        }
+        
+        let entity =  NSEntityDescription.entityForName("BusStop",
+                                                        inManagedObjectContext:managedObjectContext)
+        
+        let bs = NSManagedObject(entity: entity!,
+                                 insertIntoManagedObjectContext: managedObjectContext)
+        
+        bs.setValue(busStop.name, forKey: "name")
+        bs.setValue(busStop.sms, forKey: "sms")
+        
+        do {
+            try managedObjectContext.save()
+        } catch let error as NSError  {
+            print("Could not save \(error), \(error.userInfo)")
+        }
+    }
+    
     // MARK: - NSViewController
 
     override var nibName: String? {
@@ -149,6 +189,9 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
     func widgetSearch(searchController: NCWidgetSearchViewController!, searchForTerm searchTerm: String!, maxResults max: Int) {
         // The user has entered a search term. Set the controller's searchResults property to the matching items.
         searchController.searchResults = []
+        BusStop.searchStops(searchTerm, completion: {(searchResults: [BusStop]) -> Void in
+            self.searchController?.searchResults = searchResults
+        })
     }
 
     func widgetSearchTermCleared(searchController: NCWidgetSearchViewController!) {
@@ -158,6 +201,9 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
 
     func widgetSearch(searchController: NCWidgetSearchViewController!, resultSelected object: AnyObject!) {
         // The user has selected a search result from the list.
+        BusStop.getStop((object as! BusStop).sms, completion: {(busStop: BusStop) -> Void in
+            self.saveBusStop(busStop)
+        })
     }
     
     // MARK: - Core Data stack

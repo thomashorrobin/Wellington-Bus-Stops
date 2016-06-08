@@ -86,4 +86,41 @@ class BusStop: NSObject {
         
         task.resume()
     }
+    
+    class func searchStops(searchTerm: String, completion: (searchResults: [BusStop]) -> Void){
+        let getEndpoint: String = "https://www.metlink.org.nz/api/v1/StopSearch/" + searchTerm.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet())!
+        let session = NSURLSession.sharedSession()
+        let url = NSURL(string: getEndpoint)!
+        print(url.absoluteString)
+        let task = session.dataTaskWithURL(url, completionHandler: { ( data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+            
+            guard let realResponse = response as? NSHTTPURLResponse where
+                realResponse.statusCode == 200 else {
+                    print("Not a 200 response")
+                    return
+            }
+            
+            var parsedResults = [BusStop]()
+            
+            // Read the JSON
+            do {
+                
+                // Parse the JSON to get the IP
+                let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSArray
+                
+                for j in jsonDictionary {
+                    let bs = BusStop(stop: j as! NSDictionary)
+                    parsedResults.append(bs)
+                }
+            } catch {
+                print("bad things happened")
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                completion(searchResults: parsedResults)
+            })
+        })
+        
+        task.resume()
+    }
 }
