@@ -115,7 +115,7 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
         // refreshed. Pass NCUpdateResultNoData to indicate that nothing has changed
         // or NCUpdateResultNewData to indicate that there is new data since the
         // last invocation of this method.
-        completionHandler(.NoData)
+        completionHandler(.NewData)
     }
 
     func widgetMarginInsetsForProposedMarginInsets(defaultMarginInset: NSEdgeInsets) -> NSEdgeInsets {
