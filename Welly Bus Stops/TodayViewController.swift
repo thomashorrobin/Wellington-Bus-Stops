@@ -69,7 +69,7 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
         
         do {
             try managedObjectContext.save()
-            self.listViewController.contents.append(BusStop)
+            populateFromCoreData()
         } catch let error as NSError  {
             print("Could not save \(error), \(error.userInfo)")
         }
@@ -101,7 +101,9 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
         
         // Set up the widget list view controller.
         // The contents property should contain an object for each row in the list.
-        self.listViewController.contents = busStops
+        dispatch_async(dispatch_get_main_queue(), {
+            self.listViewController.contents = busStops
+        })
     }
 
     override func dismissViewController(viewController: NSViewController) {
