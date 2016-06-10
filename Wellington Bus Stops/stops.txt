@@ -236,7 +236,6 @@ RENA,RENA, Renall Street Station,Renall Street Stn,-40.94765033,175.6384081,14,,
 7336,7336, Queens Drive at Sutherland Road (near 252),QueensDrv at 252,-41.3326276,174.7908898,3,,0,,Pacific/Auckland
 8273,8273, Waddington Drive at Burke Grove (near 64),WaddingtonDr at 64,-41.20581952,174.9454559,5,,0,,Pacific/Auckland
 1862,1862, Wairarapa Hospital,Wairarapa Hosp,-40.94682132,175.6741782,14,,0,,Pacific/Auckland
-KELB,KELB, Kelburn - Cable Car Station,Kelburn-CableC,-41.28536474,174.7676499,1/2,,0,,Pacific/Auckland
 9145,9145, Waiwhetu Road at Rodney Street (near 40),WaiwhetuRd at 40,-41.22273227,174.9144628,4,,0,,Pacific/Auckland
 2118,2118, Warspite Avenue (near 115),WarspiteAve at 115,-41.13601861,174.8745284,6,,0,,Pacific/Auckland
 2136,2136, Ascot Park - Conclusion Street (near 141),Ascot Park,-41.11901826,174.8687853,6,,0,,Pacific/Auckland
@@ -823,9 +822,7 @@ BOXH,BOXH, Box Hill Station,Box Hill Stn,-41.24601334,174.7887566,3,,0,,Pacific/
 7749,7749, Short Street at Moffitt Street,ShortSt at Moffitt,-41.3127742,174.7700375,2,,0,,Pacific/Auckland
 7992,7992, Haywards Hill Road (Opposite Substation),Haywards-Substation,-41.14887375,174.9784309,6,,0,,Pacific/Auckland
 1294,1294, Paraparaumu Medical Centre - Kapiti Rd,MedicalCtr-KapitiRd,-40.9090738,175.0004875,9,,0,,Pacific/Auckland
-TALA,TALA, Talavera - Cable Car Station,Talavera-CableC,-41.28479274,174.7712854,1,,0,,Pacific/Auckland
 1775,1775, Otaki Station - Arthur Street,Otaki Stn-BusStop,-40.76283454,175.1562026,13,,0,,Pacific/Auckland
-SALA,SALA, Salamanca - Cable Car Station,Salamanca-CableC,-41.28505357,174.769562,1,,0,,Pacific/Auckland
 5025,5025, Hutt Road at Sar Street,HuttRd at Sar,-41.2671097,174.7815769,1,,0,,Pacific/Auckland
 4315,4315, Glenmore Street at Orangi Kaupapa Rd (near 108,GlenmoreSt at Orangi,-41.28344091,174.7621992,2,,0,,Pacific/Auckland
 9692,9692, Akatarawa Road - Harcourt Park,Harcourt Park,-41.09916945,175.094598,7,,0,,Pacific/Auckland
@@ -1784,7 +1781,6 @@ AUCK,AUCK, Auckland - Britomart Station,Britomart Stn,-36.844265,174.768029, ,,0
 7295,7295, Sidlaw Street at Monorgan Road,SidlawSt at Monorgan,-41.33143491,174.8209704,3,,0,,Pacific/Auckland
 7796,7796, Happy Valley Road (near281),HappyValleyRd at 281,-41.32935638,174.7577006,3,,0,,Pacific/Auckland
 4409,4409, Cockayne Road at Quetta Street,CockayneRd at Quetta,-41.2524067,174.7771193,3,,0,,Pacific/Auckland
-LAMB,LAMB, Lambton Quay - Cable Car Station,Lambton Quay-CableC,-41.2842116,174.7750914,1,,0,,Pacific/Auckland
 8312,8312, Logie Street at Shaftsbury Grove,LogiaSt at Shaftsbury,-41.17155848,174.9738851,6,,0,,Pacific/Auckland
 9573,9573, Fergusson Drive at Golders Road (near 699),FergussonDr at 699,-41.125902,175.0556621,7,,0,,Pacific/Auckland
 9844,9844, Days Bay - Ferry Road,Days Bay at Ferry Rd,-41.27764566,174.9054407,6,,0,,Pacific/Auckland
@@ -2280,7 +2276,6 @@ HAMI,HAMI, Hamilton Station,Hamilton Stn,-37.790872,175.265196,,,0,,Pacific/Auck
 9131,9131, Knights Road at Cornwall Street,KnightsRd at Cornwall,-41.21129966,174.9086426,4,,0,,Pacific/Auckland
 9163,9163, Knights Road at Chilton St James School,KnightsRd at Chilton,-41.2121614,174.9130644,4,,0,,Pacific/Auckland
 1802,1802, SH53 at Bidwills Cutting (Hail and Ride),SH53 at Bidwells,-41.18007196,175.4341511,12,,0,,Pacific/Auckland
-CLIF,CLIF, Clifton - Cable Car Station,Clifton-CableCar,-41.28451384,174.7730767,1,,0,,Pacific/Auckland
 4510,4510, Massey and McMaster Street,Massey-McMasterSt,-41.0828042,175.4661971,12,,0,,Pacific/Auckland
 9574,9574, Fergusson Drive at Broadway Shops,FergussonDr at 737,-41.12557238,175.0589872,7,,0,,Pacific/Auckland
 1841,1841, High Street Masterton (near 174),HighSt at 174,-40.96191696,175.6296987,14,,0,,Pacific/Auckland
