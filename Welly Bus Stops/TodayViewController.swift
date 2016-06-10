@@ -14,7 +14,6 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
 
     @IBOutlet var listViewController: NCWidgetListViewController!
     var searchController: NCWidgetSearchViewController?
-    var busStops = [BusStop]()
     
     func deleteBusStop(sms: String) {
         
@@ -29,6 +28,7 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
                 }
             }
             try managedObjectContext.save()
+            populateFromCoreData()
         } catch let error as NSError {
             print("Could not fetch \(error), \(error.userInfo)")
         }
@@ -69,6 +69,7 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
         
         do {
             try managedObjectContext.save()
+            self.listViewController.contents.append(BusStop)
         } catch let error as NSError  {
             print("Could not save \(error), \(error.userInfo)")
         }
@@ -82,6 +83,11 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        populateFromCoreData()
+    }
+    
+    func populateFromCoreData(){
+        var busStops = [BusStop]()
         
         do {
             let fetchRequest = NSFetchRequest(entityName: "BusStop")
@@ -92,7 +98,7 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
         } catch {
             
         }
-
+        
         // Set up the widget list view controller.
         // The contents property should contain an object for each row in the list.
         self.listViewController.contents = busStops
@@ -181,7 +187,8 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
 
     func widgetList(list: NCWidgetListViewController!, didRemoveRow row: Int) {
         // The user has removed an item from the list.
-        deleteBusStop(busStops[row].sms)
+        let bs = self.listViewController.contents[row] as! BusStop
+        deleteBusStop(bs.sms)
     }
 
     // MARK: - NCWidgetSearchViewDelegate
