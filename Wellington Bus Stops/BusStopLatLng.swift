@@ -96,9 +96,11 @@ class BusStopLatLng: NSObject, MKAnnotation {
                 let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
                 let bs = BusStopLatLng(stop: jsonDictionary["Stop"] as! NSDictionary)
                 var departures = [BusDeparture]()
-                let departuresArray = jsonDictionary["Services"] as! NSArray
-                for d in departuresArray {
-                    departures.append(BusDeparture(busDeparture: d as! NSDictionary))
+                let departuresArray = jsonDictionary["Services"] as? NSArray
+                if departuresArray != nil {
+                    for d in departuresArray! {
+                        departures.append(BusDeparture(busDeparture: d as! NSDictionary))
+                    }
                 }
                 completion(busStop: bs, departureTimes: departures)
             } catch {
