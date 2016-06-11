@@ -279,7 +279,6 @@ RENA,RENA, Renall Street Station,Renall Street Stn,-40.94765033,175.6384081,14,,
 1907,1907, SH53 at Boundary Road,SH53 at BoundaryRd,-41.12452133,175.3358999,11,,0,,Pacific/Auckland
 9572,9572, Fergusson Rest Home (near 657),Fergusson Rest Home,-41.12696656,175.0515261,7,,0,,Pacific/Auckland
 2321,2321, Hampshire Street at Bedford Street,HampshireSt at Bedford,-41.14390814,174.8635524,5,,0,,Pacific/Auckland
-9998,9998, Matiu/Somes Island Wharf,Matui/Somes Island,-41.25430541,174.8662435,4,,0,,Pacific/Auckland
 1962,1962, York Street at Plunket Street,YorkSt at PlunketSt,-40.95694372,175.6344912,14,,0,,Pacific/Auckland
 2801,2801, Elsdon Park - Titahi Bay Road,Elsdon Park,-41.12889349,174.8359664,5,,0,,Pacific/Auckland
 8047,8047, Hutt Road (near 408),HuttRd at 408,-41.21676153,174.883274,4,,0,,Pacific/Auckland
@@ -319,7 +318,6 @@ WOBU1,WOBU1, Woburn Station - Platform 1,Woburn Stn 1,-41.22092182,174.9113347,4
 5513,5513, Manners Street at Cuba Street (Burger King),MannersSt at CubaSt,-41.29096552,174.7766131,1,,0,,Pacific/Auckland
 9268,9268, Fairfield Shops - Waiwhetu Road (near 197),Fairfield Shops,-41.21180815,174.9321551,4/5,,0,,Pacific/Auckland
 8054,8054, Dowse Drive (near 76),DowseDr at 76,-41.21249853,174.8795733,4,,0,,Pacific/Auckland
-9999,9999, Days Bay Wharf,Days Bay Whrf,-41.28061856,174.9054078,6,,0,,Pacific/Auckland
 9911,9911, Wainuiomata Bus Depot - Main Road (Opposite),WainuiomataBusDepot,-41.27574484,174.9543369,5,,0,,Pacific/Auckland
 7157,7157, The Esplanade at Beach Street,TheEsplanade at Beach,-41.34635834,174.7694196,3,,0,,Pacific/Auckland
 6124,6124, Berhampore Shops - Luxford St (Opposite BP),Berhampore Shops,-41.31989599,174.7754872,2,,0,,Pacific/Auckland
@@ -1349,7 +1347,6 @@ PLIM1,PLIM1, Plimmerton Station - Platform 1,Plimmerton Stn 1,-41.08388941,174.8
 7051,7051, Breaker Bay Road at Palmer Bay (near 187),BreakerBayRd at Palmer,-41.34112993,174.8230332,3,,0,,Pacific/Auckland
 6039,6039, Ferry Street at Dundas Street (near 48),FerrySt at Dundas,-41.32257494,174.8287288,3,,0,,Pacific/Auckland
 4360,4360, Collier Avenue (near 20),CollierAve at 20,-41.28782834,174.7282833,3,,0,,Pacific/Auckland
-9996,9996, Petone Wharf,Petone Whrf,-41.22940859,174.8707072,4,,0,,Pacific/Auckland
 5367,5367, Hazelwood Avenue (near 23),HazelwoodAve at 23,-41.29428721,174.7240349,3,,0,,Pacific/Auckland
 4137,4137, Churchill Drive near Bowen Hospital,Churchill Dr nr Bow,-41.25964154,174.7662305,3,,0,,Pacific/Auckland
 1540,1540, Queens Road at Campion Road,QueensRd at Campion,-40.8704175,175.018806,10,,0,,Pacific/Auckland
@@ -1532,7 +1529,6 @@ WING,WING, Wingate Station,Wingate Stn,-41.18878155,174.9546969,5,,0,,Pacific/Au
 8333,8333, Manor Drive (near 18),ManorDr at 18,-41.15844079,174.9844892,6,,0,,Pacific/Auckland
 6344,6344, Coutts Street (near 203),CouttsSt at 203,-41.32319,174.803525,3,,0,,Pacific/Auckland
 9226,9226, High Street at Kingston Street (near 805),HighSt at Kingston,-41.20016454,174.9336013,5,,0,,Pacific/Auckland
-9995,9995, Seatoun Wharf,Seatoun Wharf,-41.31879167,174.8302334,3,,0,,Pacific/Auckland
 6268,6268, Nevay Road (near 56),NevayRd at 56,-41.3085618,174.8288648,3,,0,,Pacific/Auckland
 NATI,NATI, National Park Station,National Park Stn,-39.175816,175.393116,,,0,,Pacific/Auckland
 1855,1855, Masterton - Church Street,Masterton-ChurchSt,-40.95000353,175.6621322,14,,0,,Pacific/Auckland
@@ -2693,7 +2689,6 @@ CART,CART, Carterton Station,Carterton Stn,-41.02168247,175.5233127,13,,0,,Pacif
 9155,9155, Randwick Road at Moera Shops,RandwickRd at Shops,-41.22747805,174.9052954,4,,0,,Pacific/Auckland
 6728,6728, The Ridgeway at Farnham Street (near 137),Ridgeway at Farnham,-41.31827163,174.7639737,2,,0,,Pacific/Auckland
 2876,2876, Kotuku Street (near 50),KotokuSt at 50,-41.12984278,174.8281844,5,,0,,Pacific/Auckland
-9997,9997, Queens Wharf,Queens Wharf,-41.28399736,174.7791292,1,,0,,Pacific/Auckland
 7239,7239, Darlington Road at Totara Terrace (near 64),DarlingtonRd at 64,-41.3094723,174.8248141,3,,0,,Pacific/Auckland
 2152,2152, Warspite Avenue (near 178),WarspiteAve at 178,-41.13241419,174.8801442,6,,0,,Pacific/Auckland
 8625,8625, Plateau Road (near 172),PlateauRd at 172,-41.09649576,175.1420206,8,,0,,Pacific/Auckland
