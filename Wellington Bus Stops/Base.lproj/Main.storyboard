@@ -756,10 +756,10 @@
             </objects>
             <point key="canvasLocation" x="995.5" y="60"/>
         </scene>
-        <!--Split View Controller-->
+        <!--Bus Stop Management Page-->
         <scene sceneID="Xbw-l2-3Ce">
             <objects>
-                <splitViewController showSeguePresentationStyle="single" id="fIP-yR-c55" sceneMemberID="viewController">
+                <splitViewController title="Bus Stop Management Page" showSeguePresentationStyle="single" id="fIP-yR-c55" sceneMemberID="viewController">
                     <splitViewItems>
                         <splitViewItem id="vw5-n1-JpC"/>
                         <splitViewItem id="afH-co-bom"/>
