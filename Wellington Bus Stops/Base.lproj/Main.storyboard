@@ -754,7 +754,7 @@
                 </viewController>
                 <customObject id="J1e-b2-pYI" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1195.5" y="400"/>
+            <point key="canvasLocation" x="995.5" y="60"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="Xbw-l2-3Ce">
@@ -778,7 +778,7 @@
                 </splitViewController>
                 <customObject id="Uv8-ea-sh2" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="448" y="2404"/>
+            <point key="canvasLocation" x="-116" y="460"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="okq-LW-jVt">
@@ -809,7 +809,7 @@
                 </viewController>
                 <customObject id="0SL-qi-2Sv" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2207" y="2673"/>
+            <point key="canvasLocation" x="247" y="1153"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="rtE-ih-QP8">
@@ -822,11 +822,11 @@
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PzM-Pe-hLD">
                                 <rect key="frame" x="0.0" y="20" width="328" height="327"/>
                                 <clipView key="contentView" id="5Px-NB-CMk">
-                                    <rect key="frame" x="3" y="0.0" width="328" height="312"/>
+                                    <rect key="frame" x="1" y="0.0" width="326" height="326"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="ThT-IY-nbK" id="l4e-Ks-eNa">
-                                            <rect key="frame" x="0.0" y="0.0" width="328" height="289"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="326" height="303"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -845,7 +845,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn width="85.013799815209552" minWidth="40" maxWidth="1000" id="Rfn-2x-0n1">
+                                                <tableColumn width="78.001001801258894" minWidth="40" maxWidth="1000" id="Rfn-2x-0n1">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Stop Number">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -866,7 +866,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="328" id="kxi-kH-voO"/>
                                 </constraints>
-                                <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="0.15928485775562226" horizontal="YES" id="eIl-KM-JKH">
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="eIl-KM-JKH">
                                     <rect key="frame" x="1" y="311" width="326" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -875,7 +875,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="ThT-IY-nbK">
-                                    <rect key="frame" x="0.0" y="0.0" width="328" height="23"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="326" height="23"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
@@ -908,7 +908,7 @@
                 </viewController>
                 <customObject id="KqI-UC-AW0" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1807" y="1344.5"/>
+            <point key="canvasLocation" x="751" y="596.5"/>
         </scene>
     </scenes>
     <resources>
