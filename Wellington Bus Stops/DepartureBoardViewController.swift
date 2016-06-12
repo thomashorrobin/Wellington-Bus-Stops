@@ -54,7 +54,7 @@ class DepartureBoardViewController: NSViewController, ITableDataRefreshable, NST
         // Do view setup here.
     }
     
-    func populateDepartureBoard(sms: String, savedToWidget: Bool) {
+    func populateDepartureBoard(sms: String, savedToWidget: Bool, kill: () -> ()) {
         self.sms = sms
         setSavedToWidgetStatus(savedToWidget)
         BusStopLatLng.getDepartureTimes(sms, completion: {(busStop: BusStopLatLng, departureTimes: [BusDeparture]) -> Void in
@@ -64,7 +64,7 @@ class DepartureBoardViewController: NSViewController, ITableDataRefreshable, NST
             dispatch_async(dispatch_get_main_queue(), {
                 self.tableView.reloadData()
             })
-        })
+            }, error: kill)
     }
     
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {

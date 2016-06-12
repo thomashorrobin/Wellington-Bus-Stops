@@ -25,12 +25,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         if let vc = storyboard.instantiateControllerWithIdentifier("departureBoard") as? DepartureBoardViewController{
             let newWindow = NSWindow(contentViewController: vc)
-            vc.populateDepartureBoard(sms, savedToWidget: busStopExists(sms))
             newWindow.title = "Stop: " + sms
             newWindow.makeKeyAndOrderFront(self)
             let controller = NSWindowController(window: newWindow)
             departureBoardWindows.append(controller)
             controller.showWindow(self)
+            vc.populateDepartureBoard(sms, savedToWidget: busStopExists(sms), kill: {() -> () in
+                dispatch_async(dispatch_get_main_queue(), {
+                    newWindow.close()
+                    let alert = NSAlert()
+                    alert.messageText = "Invalid Busstop Number"
+                    alert.informativeText = "\(sms) isn't a known busstop number. Please try again."
+                    alert.runModal()
+                })
+            })
             tablesToRefresh.append(vc)
         }
     }

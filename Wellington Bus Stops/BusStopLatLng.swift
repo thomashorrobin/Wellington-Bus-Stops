@@ -76,7 +76,7 @@ class BusStopLatLng: NSObject, MKAnnotation {
         task.resume()
     }
     
-    class func getDepartureTimes(sms: String, completion: (busStop: BusStopLatLng, departureTimes: [BusDeparture]) -> ()) {
+    class func getDepartureTimes(sms: String, completion: (busStop: BusStopLatLng, departureTimes: [BusDeparture]) -> (), error err: () -> ()) {
         let getEndpoint: String = "https://www.metlink.org.nz/api/v1/StopDepartures/" + sms.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet())!
         let session = NSURLSession.sharedSession()
         let url = NSURL(string: getEndpoint)!
@@ -86,6 +86,7 @@ class BusStopLatLng: NSObject, MKAnnotation {
             guard let realResponse = response as? NSHTTPURLResponse where
                 realResponse.statusCode == 200 else {
                     print("Not a 200 response")
+                    err()
                     return
             }
             
