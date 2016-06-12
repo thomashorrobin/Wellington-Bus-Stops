@@ -136,7 +136,7 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
     var widgetAllowsEditing: Bool {
         // Return true to indicate that the widget supports editing of content and
         // that the list view should be allowed to enter an edit mode.
-        return true
+        return false
     }
 
     func widgetDidBeginEditing() {
