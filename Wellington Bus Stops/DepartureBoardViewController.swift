@@ -56,7 +56,7 @@ class DepartureBoardViewController: NSViewController, ITableDataRefreshable, NST
     
     func populateDepartureBoard(sms: String, savedToWidget: Bool) {
         self.sms = sms
-        self.savedToWidget = savedToWidget
+        setSavedToWidgetStatus(savedToWidget)
         BusStopLatLng.getDepartureTimes(sms, completion: {(busStop: BusStopLatLng, departureTimes: [BusDeparture]) -> Void in
             self.busStopNameLabel.stringValue = busStop.name
             self.busStop = busStop
