@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4943CB471D029236007F46C6 /* Wellington_Bus_Stops.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49F1BA861CF94B4E0078AAE7 /* Wellington_Bus_Stops.xcdatamodeld */; };
 		4943CB4B1D02E87B007F46C6 /* DepartureBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4943CB4A1D02E87B007F46C6 /* DepartureBoardViewController.swift */; };
+		4944A09B1D0D2DA4004AD79E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4944A09A1D0D2DA4004AD79E /* MapViewController.swift */; };
 		494FBCED1D04E8E600FE0538 /* TimeToBusDeparture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494FBCEC1D04E8E600FE0538 /* TimeToBusDeparture.swift */; };
 		494FBCEF1D04EDAD00FE0538 /* BusDeparture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494FBCEE1D04EDAD00FE0538 /* BusDeparture.swift */; };
 		497689D01CFAAD85006DDFBD /* stops.txt in Resources */ = {isa = PBXBuildFile; fileRef = 497689CF1CFAAD85006DDFBD /* stops.txt */; };
@@ -16,8 +17,8 @@
 		4986597A1D05919900C87C05 /* TimeToBusDeparture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494FBCEC1D04E8E600FE0538 /* TimeToBusDeparture.swift */; };
 		4986597B1D0591A400C87C05 /* BusDeparture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494FBCEE1D04EDAD00FE0538 /* BusDeparture.swift */; };
 		49B1BCF41D03D65E003B0848 /* ITableDataRefreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B1BCF31D03D65E003B0848 /* ITableDataRefreshable.swift */; };
+		49DC3AFF1D0D34A300F55D76 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DC3AFE1D0D34A300F55D76 /* TableViewController.swift */; };
 		49F1BA831CF94B4D0078AAE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F1BA821CF94B4D0078AAE7 /* AppDelegate.swift */; };
-		49F1BA851CF94B4E0078AAE7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F1BA841CF94B4D0078AAE7 /* ViewController.swift */; };
 		49F1BA881CF94B4E0078AAE7 /* Wellington_Bus_Stops.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49F1BA861CF94B4E0078AAE7 /* Wellington_Bus_Stops.xcdatamodeld */; };
 		49F1BA8A1CF94B4E0078AAE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49F1BA891CF94B4E0078AAE7 /* Assets.xcassets */; };
 		49F1BA8D1CF94B4E0078AAE7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49F1BA8B1CF94B4E0078AAE7 /* Main.storyboard */; };
@@ -66,14 +67,15 @@
 
 /* Begin PBXFileReference section */
 		4943CB4A1D02E87B007F46C6 /* DepartureBoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartureBoardViewController.swift; sourceTree = "<group>"; };
+		4944A09A1D0D2DA4004AD79E /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		494FBCEC1D04E8E600FE0538 /* TimeToBusDeparture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeToBusDeparture.swift; sourceTree = "<group>"; };
 		494FBCEE1D04EDAD00FE0538 /* BusDeparture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusDeparture.swift; sourceTree = "<group>"; };
 		497689CF1CFAAD85006DDFBD /* stops.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stops.txt; sourceTree = "<group>"; };
 		497689D31CFC2268006DDFBD /* BusStop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStop.swift; sourceTree = "<group>"; };
 		49B1BCF31D03D65E003B0848 /* ITableDataRefreshable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITableDataRefreshable.swift; sourceTree = "<group>"; };
+		49DC3AFE1D0D34A300F55D76 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		49F1BA7F1CF94B4D0078AAE7 /* Wellington Bus Stops.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wellington Bus Stops.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49F1BA821CF94B4D0078AAE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		49F1BA841CF94B4D0078AAE7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		49F1BA871CF94B4E0078AAE7 /* Wellington_Bus_Stops.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Wellington_Bus_Stops.xcdatamodel; sourceTree = "<group>"; };
 		49F1BA891CF94B4E0078AAE7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		49F1BA8C1CF94B4E0078AAE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -150,7 +152,6 @@
 				497689CF1CFAAD85006DDFBD /* stops.txt */,
 				49F1BAA21CF94B890078AAE7 /* Wellington Bus Stops.entitlements */,
 				49F1BA821CF94B4D0078AAE7 /* AppDelegate.swift */,
-				49F1BA841CF94B4D0078AAE7 /* ViewController.swift */,
 				49F1BA891CF94B4E0078AAE7 /* Assets.xcassets */,
 				49F1BA8B1CF94B4E0078AAE7 /* Main.storyboard */,
 				49F1BA8E1CF94B4E0078AAE7 /* Info.plist */,
@@ -160,6 +161,8 @@
 				49B1BCF31D03D65E003B0848 /* ITableDataRefreshable.swift */,
 				494FBCEC1D04E8E600FE0538 /* TimeToBusDeparture.swift */,
 				494FBCEE1D04EDAD00FE0538 /* BusDeparture.swift */,
+				4944A09A1D0D2DA4004AD79E /* MapViewController.swift */,
+				49DC3AFE1D0D34A300F55D76 /* TableViewController.swift */,
 			);
 			path = "Wellington Bus Stops";
 			sourceTree = "<group>";
@@ -357,9 +360,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				49F1BAE61CF95E750078AAE7 /* BusStopLatLng.swift in Sources */,
-				49F1BA851CF94B4E0078AAE7 /* ViewController.swift in Sources */,
 				49B1BCF41D03D65E003B0848 /* ITableDataRefreshable.swift in Sources */,
+				49DC3AFF1D0D34A300F55D76 /* TableViewController.swift in Sources */,
 				494FBCEF1D04EDAD00FE0538 /* BusDeparture.swift in Sources */,
+				4944A09B1D0D2DA4004AD79E /* MapViewController.swift in Sources */,
 				494FBCED1D04E8E600FE0538 /* TimeToBusDeparture.swift in Sources */,
 				4943CB4B1D02E87B007F46C6 /* DepartureBoardViewController.swift in Sources */,
 				49F1BA881CF94B4E0078AAE7 /* Wellington_Bus_Stops.xcdatamodeld in Sources */,
