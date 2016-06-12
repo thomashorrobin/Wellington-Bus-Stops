@@ -44,7 +44,7 @@ class TableViewController: NSViewController, NSTableViewDelegate, NSTableViewDat
         alert.accessoryView = tf
         let response: NSModalResponse = alert.runModal()
         if response == NSAlertFirstButtonReturn {
-            appDelegate.openNewDepartureBoardWindow(tf.stringValue)
+            appDelegate.addFromSms(tf.stringValue)
         }
     }
     

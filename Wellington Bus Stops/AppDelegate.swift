@@ -43,6 +43,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
+    func addFromSms(sms: String){
+        BusStopLatLng.getStop(sms, completion: {(busStop: BusStopLatLng) -> Void in
+            self.saveBusStop(busStop, completetion: {(busStop: NSManagedObject) -> Void in
+                self.refreshTableData()
+            })
+            }, error: invalidBusStopHandler)
+    }
+    
+    func invalidBusStopHandler(sms: String) -> () {
+        dispatch_async(dispatch_get_main_queue(), {
+            let alert = NSAlert()
+            alert.messageText = "Invalid Busstop Number"
+            alert.informativeText = "\(sms) isn't a known busstop number. Please try again."
+            alert.runModal()
+        })
+    }
+    
     func saveBusStop(busStop: BusStopLatLng, completetion: (busStop: NSManagedObject) -> Void) {
         
         if busStopExists(busStop.sms) {
