@@ -63,6 +63,7 @@ class DepartureBoardViewController: NSViewController, ITableDataRefreshable, NST
             self.departures.appendContentsOf(departureTimes)
             dispatch_async(dispatch_get_main_queue(), {
                 self.tableView.reloadData()
+                self.addOrRemoveBtn.enabled = true
             })
             }, error: kill)
     }
