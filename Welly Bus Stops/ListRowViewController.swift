@@ -22,15 +22,16 @@ class ListRowViewController: NSViewController, NSTableViewDelegate, NSTableViewD
         super.loadView()
         tableView.setDelegate(self)
         tableView.setDataSource(self)
-        //let thisBusStop = self.representedObject as! BusStop
-        BusStop.getDepartureTimes("4323", completion: {(busStop: BusStop, departureTimes: [BusDeparture]) -> Void in
+    }
+    
+    override func viewDidAppear() {
+        let thisBusStop = self.representedObject as! BusStop
+        BusStop.getDepartureTimes(thisBusStop.sms, completion: {(busStop: BusStop, departureTimes: [BusDeparture]) -> Void in
             self.departureTimes.appendContentsOf(departureTimes)
             dispatch_async(dispatch_get_main_queue(), {
                 self.tableView.reloadData()
             })
         })
-
-        // Insert code here to customize the view
     }
     
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
