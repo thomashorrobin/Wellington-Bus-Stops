@@ -15,66 +15,6 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
     @IBOutlet var listViewController: NCWidgetListViewController!
     var searchController: NCWidgetSearchViewController?
     
-    func deleteBusStop(sms: String) {
-        
-        let fetchRequest = NSFetchRequest(entityName: "BusStop")
-        
-        do {
-            let results = try managedObjectContext.executeFetchRequest(fetchRequest)
-            let managedObjects = results as! [NSManagedObject]
-            for managedObject in managedObjects {
-                if managedObject.valueForKey("sms") as! String == sms {
-                    managedObjectContext.deleteObject(managedObject)
-                }
-            }
-            try managedObjectContext.save()
-            populateFromCoreData()
-        } catch let error as NSError {
-            print("Could not fetch \(error), \(error.userInfo)")
-        }
-    }
-    
-    func busStopExists(sms: String) -> Bool {
-        let fetchRequest = NSFetchRequest(entityName: "BusStop")
-        
-        do {
-            let results = try managedObjectContext.executeFetchRequest(fetchRequest)
-            let managedObjects = results as! [NSManagedObject]
-            for managedObject in managedObjects {
-                if managedObject.valueForKey("sms") as! String == sms {
-                    return true
-                }
-            }
-        } catch let error as NSError {
-            print("Could not fetch \(error), \(error.userInfo)")
-        }
-        return false
-    }
-    
-    func saveBusStop(busStop: BusStop) {
-        
-        if busStopExists(busStop.sms) {
-            print("Bus stop: \(busStop.sms) already exisits. Can't be duplicated")
-            return
-        }
-        
-        let entity =  NSEntityDescription.entityForName("BusStop",
-                                                        inManagedObjectContext:managedObjectContext)
-        
-        let bs = NSManagedObject(entity: entity!,
-                                 insertIntoManagedObjectContext: managedObjectContext)
-        
-        bs.setValue(busStop.name, forKey: "name")
-        bs.setValue(busStop.sms, forKey: "sms")
-        
-        do {
-            try managedObjectContext.save()
-            populateFromCoreData()
-        } catch let error as NSError  {
-            print("Could not save \(error), \(error.userInfo)")
-        }
-    }
-    
     // MARK: - NSViewController
 
     override var nibName: String? {
@@ -189,8 +129,6 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
 
     func widgetList(list: NCWidgetListViewController!, didRemoveRow row: Int) {
         // The user has removed an item from the list.
-        let bs = self.listViewController.contents[row] as! BusStop
-        deleteBusStop(bs.sms)
     }
 
     // MARK: - NCWidgetSearchViewDelegate
@@ -210,9 +148,6 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
 
     func widgetSearch(searchController: NCWidgetSearchViewController!, resultSelected object: AnyObject!) {
         // The user has selected a search result from the list.
-        BusStop.getStop((object as! BusStop).sms, completion: {(busStop: BusStop) -> Void in
-            self.saveBusStop(busStop)
-        })
     }
     
     // MARK: - Core Data stack
