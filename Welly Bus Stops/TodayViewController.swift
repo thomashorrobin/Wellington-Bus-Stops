@@ -41,7 +41,7 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
         
         // Set up the widget list view controller.
         // The contents property should contain an object for each row in the list.
-        dispatch_async(dispatch_get_main_queue(), {
+        dispatch_after(0, dispatch_get_main_queue(), {
             self.listViewController.contents = busStops
         })
     }
