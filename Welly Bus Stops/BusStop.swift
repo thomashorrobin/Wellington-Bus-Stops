@@ -74,7 +74,7 @@ class BusStop: NSObject {
                 let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
                 let bs = BusStop(stop: jsonDictionary["Stop"] as! NSDictionary)
                 var departures = [BusDeparture]()
-                let departuresArray = jsonDictionary["Services"] as! NSArray
+                let departuresArray = jsonDictionary["Services"] as! NSArray //TODO: null check this
                 for d in departuresArray {
                     departures.append(BusDeparture(busDeparture: d as! NSDictionary))
                 }
