@@ -49,14 +49,15 @@
       "scale" : "2x"
     },
     {
-      "idiom" : "mac",
       "size" : "512x512",
+      "idiom" : "mac",
       "filename" : "3ac514df5b4f36e2d8d525fe7f63b83c.png",
       "scale" : "1x"
     },
     {
-      "idiom" : "mac",
       "size" : "512x512",
+      "idiom" : "mac",
+      "filename" : "bus-logo-1024x1024.jpg",
       "scale" : "2x"
     }
   ],
