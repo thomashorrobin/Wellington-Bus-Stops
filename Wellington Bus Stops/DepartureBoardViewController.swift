@@ -34,6 +34,18 @@ class DepartureBoardViewController: NSViewController, ITableDataRefreshable, NST
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var addOrRemoveBtn: NSButton!
     
+    @IBAction func refreshDepartureData(sender: AnyObject) {
+        dispatch_async(dispatch_get_main_queue(), {
+            self.departures.removeAll()
+            self.tableView.reloadData()
+        })
+        BusStopLatLng.getDepartureTimes(sms, completion: {(busStop: BusStopLatLng, departureTimes: [BusDeparture]) -> Void in
+            self.departures.appendContentsOf(departureTimes)
+            dispatch_async(dispatch_get_main_queue(), {
+                self.tableView.reloadData()
+            })}, error: {})
+    }
+    
     @IBAction func addOrRemoveBusStop(sender: NSButton) {
         let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
         if !self.savedToWidget {
