@@ -11,6 +11,18 @@ import Cocoa
 class ListRowViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
     
     var departureTimes = [BusDeparture]()
+    var sms = "4323"
+    
+    @IBAction func refreshDepatureData(sender: AnyObject) {
+        self.departureTimes.removeAll()
+        self.tableView.reloadData()
+        BusStop.getDepartureTimes(sms, completion: {(busStop: BusStop, departureTimes: [BusDeparture]) -> Void in
+            self.departureTimes.appendContentsOf(departureTimes)
+            dispatch_async(dispatch_get_main_queue(), {
+                self.tableView.reloadData()
+            })
+        })
+    }
     
     @IBOutlet weak var tableView: NSTableView!
 
@@ -26,6 +38,7 @@ class ListRowViewController: NSViewController, NSTableViewDelegate, NSTableViewD
     
     override func viewDidAppear() {
         let thisBusStop = self.representedObject as! BusStop
+        sms = thisBusStop.sms
         BusStop.getDepartureTimes(thisBusStop.sms, completion: {(busStop: BusStop, departureTimes: [BusDeparture]) -> Void in
             self.departureTimes.appendContentsOf(departureTimes)
             dispatch_async(dispatch_get_main_queue(), {
