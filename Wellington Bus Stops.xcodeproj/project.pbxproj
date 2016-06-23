@@ -12,6 +12,8 @@
 		4944A09B1D0D2DA4004AD79E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4944A09A1D0D2DA4004AD79E /* MapViewController.swift */; };
 		494FBCED1D04E8E600FE0538 /* TimeToBusDeparture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494FBCEC1D04E8E600FE0538 /* TimeToBusDeparture.swift */; };
 		494FBCEF1D04EDAD00FE0538 /* BusDeparture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494FBCEE1D04EDAD00FE0538 /* BusDeparture.swift */; };
+		495B2E811D1B8D9B001ABA4E /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495B2E801D1B8D9B001ABA4E /* Reachability.swift */; };
+		495B2E821D1B8D9B001ABA4E /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495B2E801D1B8D9B001ABA4E /* Reachability.swift */; };
 		497689D01CFAAD85006DDFBD /* stops.txt in Resources */ = {isa = PBXBuildFile; fileRef = 497689CF1CFAAD85006DDFBD /* stops.txt */; };
 		497689D41CFC2268006DDFBD /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497689D31CFC2268006DDFBD /* BusStop.swift */; };
 		4986597A1D05919900C87C05 /* TimeToBusDeparture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494FBCEC1D04E8E600FE0538 /* TimeToBusDeparture.swift */; };
@@ -70,6 +72,7 @@
 		4944A09A1D0D2DA4004AD79E /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		494FBCEC1D04E8E600FE0538 /* TimeToBusDeparture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeToBusDeparture.swift; sourceTree = "<group>"; };
 		494FBCEE1D04EDAD00FE0538 /* BusDeparture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusDeparture.swift; sourceTree = "<group>"; };
+		495B2E801D1B8D9B001ABA4E /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		497689CF1CFAAD85006DDFBD /* stops.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stops.txt; sourceTree = "<group>"; };
 		497689D31CFC2268006DDFBD /* BusStop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStop.swift; sourceTree = "<group>"; };
 		49B1BCF31D03D65E003B0848 /* ITableDataRefreshable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITableDataRefreshable.swift; sourceTree = "<group>"; };
@@ -163,6 +166,7 @@
 				494FBCEE1D04EDAD00FE0538 /* BusDeparture.swift */,
 				4944A09A1D0D2DA4004AD79E /* MapViewController.swift */,
 				49DC3AFE1D0D34A300F55D76 /* TableViewController.swift */,
+				495B2E801D1B8D9B001ABA4E /* Reachability.swift */,
 			);
 			path = "Wellington Bus Stops";
 			sourceTree = "<group>";
@@ -367,6 +371,7 @@
 				494FBCED1D04E8E600FE0538 /* TimeToBusDeparture.swift in Sources */,
 				4943CB4B1D02E87B007F46C6 /* DepartureBoardViewController.swift in Sources */,
 				49F1BA881CF94B4E0078AAE7 /* Wellington_Bus_Stops.xcdatamodeld in Sources */,
+				495B2E811D1B8D9B001ABA4E /* Reachability.swift in Sources */,
 				49F1BA831CF94B4D0078AAE7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -383,6 +388,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				495B2E821D1B8D9B001ABA4E /* Reachability.swift in Sources */,
 				497689D41CFC2268006DDFBD /* BusStop.swift in Sources */,
 				4986597A1D05919900C87C05 /* TimeToBusDeparture.swift in Sources */,
 				4943CB471D029236007F46C6 /* Wellington_Bus_Stops.xcdatamodeld in Sources */,
