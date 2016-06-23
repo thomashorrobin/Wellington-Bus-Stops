@@ -36,15 +36,17 @@ class TableViewController: NSViewController, NSTableViewDelegate, NSTableViewDat
     }
     
     func addBusStopDialog() {
-        let alert = NSAlert()
-        alert.messageText = "Add stop to widget by bus stop number"
-        alert.addButtonWithTitle("OK")
-        alert.addButtonWithTitle("Cancel")
-        let tf = NSTextField(frame: NSRect(x: 0, y: 0, width: 200, height: 24))
-        alert.accessoryView = tf
-        let response: NSModalResponse = alert.runModal()
-        if response == NSAlertFirstButtonReturn {
-            appDelegate.addFromSms(tf.stringValue)
+        if Reachability.isConnectedToNetwork(true) {
+            let alert = NSAlert()
+            alert.messageText = "Add stop to widget by bus stop number"
+            alert.addButtonWithTitle("OK")
+            alert.addButtonWithTitle("Cancel")
+            let tf = NSTextField(frame: NSRect(x: 0, y: 0, width: 200, height: 24))
+            alert.accessoryView = tf
+            let response: NSModalResponse = alert.runModal()
+            if response == NSAlertFirstButtonReturn {
+                appDelegate.addFromSms(tf.stringValue)
+            }
         }
     }
     
