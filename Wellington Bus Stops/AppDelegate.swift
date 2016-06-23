@@ -119,6 +119,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         return false
     }
+    
+    func applicationShouldTerminateAfterLastWindowClosed(sender: NSApplication) -> Bool {
+        return true
+    }
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
