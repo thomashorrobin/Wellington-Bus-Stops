@@ -21,6 +21,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func openNewDepartureBoardWindow(sms: String) {
+        
+        if !Reachability.isConnectedToNetwork(true){
+            return
+        }
+        
         let storyboard = NSStoryboard(name: "Main",bundle: nil)
         
         if let vc = storyboard.instantiateControllerWithIdentifier("departureBoard") as? DepartureBoardViewController{
