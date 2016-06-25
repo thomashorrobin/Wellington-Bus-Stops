@@ -17,11 +17,11 @@ class DepartureBoardViewController: NSViewController, ITableDataRefreshable, NST
     var departures = [BusDeparture]()
     
     func refreshTableData() {
-        let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate = NSApplication.shared().delegate as! AppDelegate
         setSavedToWidgetStatus(appDelegate.busStopExists(sms))
     }
     
-    func setSavedToWidgetStatus(savedToWidget: Bool){
+    func setSavedToWidgetStatus(_ savedToWidget: Bool){
         self.savedToWidget = savedToWidget
         if savedToWidget {
             addOrRemoveBtn.title = "remove"
@@ -34,20 +34,20 @@ class DepartureBoardViewController: NSViewController, ITableDataRefreshable, NST
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var addOrRemoveBtn: NSButton!
     
-    @IBAction func refreshDepartureData(sender: AnyObject) {
-        dispatch_async(dispatch_get_main_queue(), {
+    @IBAction func refreshDepartureData(_ sender: AnyObject) {
+        DispatchQueue.main.async(execute: {
             self.departures.removeAll()
             self.tableView.reloadData()
         })
         BusStopLatLng.getDepartureTimes(sms, completion: {(busStop: BusStopLatLng, departureTimes: [BusDeparture]) -> Void in
-            self.departures.appendContentsOf(departureTimes)
-            dispatch_async(dispatch_get_main_queue(), {
+            self.departures.append(contentsOf: departureTimes)
+            DispatchQueue.main.async(execute: {
                 self.tableView.reloadData()
             })}, error: {})
     }
     
-    @IBAction func addOrRemoveBusStop(sender: NSButton) {
-        let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+    @IBAction func addOrRemoveBusStop(_ sender: NSButton) {
+        let appDelegate = NSApplication.shared().delegate as! AppDelegate
         if !self.savedToWidget {
             appDelegate.saveBusStop(busStop!, completetion: {(busStop: NSManagedObject) -> Void in
                 appDelegate.refreshTableData()
@@ -61,30 +61,30 @@ class DepartureBoardViewController: NSViewController, ITableDataRefreshable, NST
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.setDelegate(self)
-        tableView.setDataSource(self)
+        tableView.delegate = self
+        tableView.dataSource = self
         // Do view setup here.
     }
     
-    func populateDepartureBoard(sms: String, savedToWidget: Bool, kill: () -> ()) {
+    func populateDepartureBoard(_ sms: String, savedToWidget: Bool, kill: () -> ()) {
         self.sms = sms
         setSavedToWidgetStatus(savedToWidget)
         BusStopLatLng.getDepartureTimes(sms, completion: {(busStop: BusStopLatLng, departureTimes: [BusDeparture]) -> Void in
             self.busStopNameLabel.stringValue = busStop.name
             self.busStop = busStop
-            self.departures.appendContentsOf(departureTimes)
-            dispatch_async(dispatch_get_main_queue(), {
+            self.departures.append(contentsOf: departureTimes)
+            DispatchQueue.main.async(execute: {
                 self.tableView.reloadData()
-                self.addOrRemoveBtn.enabled = true
+                self.addOrRemoveBtn.isEnabled = true
             })
             }, error: kill)
     }
     
-    func numberOfRowsInTableView(tableView: NSTableView) -> Int {
+    func numberOfRows(in tableView: NSTableView) -> Int {
         return departures.count
     }
     
-    func tableView(tableView: NSTableView, objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
+    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
         
         if tableColumn!.title == "Route"
         {

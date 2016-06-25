@@ -24,14 +24,14 @@ class MapViewController: NSViewController, MKMapViewDelegate {
         mapView.setRegion(wellingtonRegionMKView, animated: true)
     }
     
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         if annotation is MKUserLocation {
             return nil
         }
         
         let reuseId = "pin"
-        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
         
         if pinView == nil {
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
@@ -43,7 +43,7 @@ class MapViewController: NSViewController, MKMapViewDelegate {
         let button = NSButton()
         button.title = "show"
         button.target = bs
-        button.bezelStyle = NSBezelStyle.RecessedBezelStyle
+        button.bezelStyle = NSBezelStyle.recessedBezelStyle
         
         button.action = #selector(bs.launchDepartureBoard)
         

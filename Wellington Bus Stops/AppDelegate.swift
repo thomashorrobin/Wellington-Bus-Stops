@@ -20,7 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    func openNewDepartureBoardWindow(sms: String) {
+    func openNewDepartureBoardWindow(_ sms: String) {
         
         if !Reachability.isConnectedToNetwork(true){
             return
@@ -28,7 +28,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         let storyboard = NSStoryboard(name: "Main",bundle: nil)
         
-        if let vc = storyboard.instantiateControllerWithIdentifier("departureBoard") as? DepartureBoardViewController{
+        if let vc = storyboard.instantiateController(withIdentifier: "departureBoard") as? DepartureBoardViewController{
             let newWindow = NSWindow(contentViewController: vc)
             newWindow.title = "Stop: " + sms
             newWindow.makeKeyAndOrderFront(self)
@@ -36,7 +36,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             departureBoardWindows.append(controller)
             controller.showWindow(self)
             vc.populateDepartureBoard(sms, savedToWidget: busStopExists(sms), kill: {() -> () in
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     newWindow.close()
                     let alert = NSAlert()
                     alert.messageText = "Invalid Busstop Number"
@@ -48,7 +48,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    func addFromSms(sms: String){
+    func addFromSms(_ sms: String){
         BusStopLatLng.getStop(sms, completion: {(busStop: BusStopLatLng) -> Void in
             self.saveBusStop(busStop, completetion: {(busStop: NSManagedObject) -> Void in
                 self.refreshTableData()
@@ -56,8 +56,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }, error: invalidBusStopHandler)
     }
     
-    func invalidBusStopHandler(sms: String) -> () {
-        dispatch_async(dispatch_get_main_queue(), {
+    func invalidBusStopHandler(_ sms: String) -> () {
+        DispatchQueue.main.async(execute: {
             let alert = NSAlert()
             alert.messageText = "Invalid Busstop Number"
             alert.informativeText = "\(sms) isn't a known busstop number. Please try again."
@@ -65,18 +65,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         })
     }
     
-    func saveBusStop(busStop: BusStopLatLng, completetion: (busStop: NSManagedObject) -> Void) {
+    func saveBusStop(_ busStop: BusStopLatLng, completetion: (busStop: NSManagedObject) -> Void) {
         
         if busStopExists(busStop.sms) {
             print("Bus stop: \(busStop.sms) already exisits. Can't be duplicated")
             return
         }
         
-        let entity =  NSEntityDescription.entityForName("BusStop",
-                                                        inManagedObjectContext:managedObjectContext)
+        let entity =  NSEntityDescription.entity(forEntityName: "BusStop",
+                                                        in:managedObjectContext)
         
         let bs = NSManagedObject(entity: entity!,
-                                 insertIntoManagedObjectContext: managedObjectContext)
+                                 insertInto: managedObjectContext)
         
         bs.setValue(busStop.name, forKey: "name")
         bs.setValue(busStop.sms, forKey: "sms")
@@ -89,16 +89,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    func deleteBusStop(sms: String) {
+    func deleteBusStop(_ sms: String) {
         
         let fetchRequest = NSFetchRequest(entityName: "BusStop")
         
         do {
-            let results = try managedObjectContext.executeFetchRequest(fetchRequest)
+            let results = try managedObjectContext.fetch(fetchRequest)
             let managedObjects = results as! [NSManagedObject]
             for managedObject in managedObjects {
-                if managedObject.valueForKey("sms") as! String == sms {
-                    managedObjectContext.deleteObject(managedObject)
+                if managedObject.value(forKey: "sms") as! String == sms {
+                    managedObjectContext.delete(managedObject)
                 }
             }
             try managedObjectContext.save()
@@ -108,14 +108,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    func busStopExists(sms: String) -> Bool {
+    func busStopExists(_ sms: String) -> Bool {
         let fetchRequest = NSFetchRequest(entityName: "BusStop")
         
         do {
-            let results = try managedObjectContext.executeFetchRequest(fetchRequest)
+            let results = try managedObjectContext.fetch(fetchRequest)
             let managedObjects = results as! [NSManagedObject]
             for managedObject in managedObjects {
-                if managedObject.valueForKey("sms") as! String == sms {
+                if managedObject.value(forKey: "sms") as! String == sms {
                     return true
                 }
             }
@@ -125,44 +125,44 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return false
     }
     
-    func applicationShouldTerminateAfterLastWindowClosed(sender: NSApplication) -> Bool {
+    func applicationShouldTerminate(afterLastWindowClosed sender: NSApplication) -> Bool {
         return true
     }
 
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
     }
 
-    func applicationWillTerminate(aNotification: NSNotification) {
+    func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
 
     // MARK: - Core Data stack
 
-    lazy var applicationDocumentsDirectory: NSURL = {
+    lazy var applicationDocumentsDirectory: URL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "wccapps.Wellington_Bus_Stops" in the user's Application Support directory.
-        let urls = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier("6H77GT49V5.group.wccapps.bus_stop_data")
+        let urls = FileManager.default().containerURLForSecurityApplicationGroupIdentifier("6H77GT49V5.group.wccapps.bus_stop_data")
         let appSupportURL = urls!
-        return appSupportURL.URLByAppendingPathComponent("6H77GT49V5.group.wccapps.bus_stop_data")
+        return try! appSupportURL.appendingPathComponent("6H77GT49V5.group.wccapps.bus_stop_data")
     }()
 
     lazy var managedObjectModel: NSManagedObjectModel = {
         // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
-        let modelURL = NSBundle.mainBundle().URLForResource("Wellington_Bus_Stops", withExtension: "momd")!
-        return NSManagedObjectModel(contentsOfURL: modelURL)!
+        let modelURL = Bundle.main().urlForResource("Wellington_Bus_Stops", withExtension: "momd")!
+        return NSManagedObjectModel(contentsOf: modelURL)!
     }()
 
     lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
         // The persistent store coordinator for the application. This implementation creates and returns a coordinator, having added the store for the application to it. (The directory for the store is created, if necessary.) This property is optional since there are legitimate error conditions that could cause the creation of the store to fail.
-        let fileManager = NSFileManager.defaultManager()
+        let fileManager = FileManager.default()
         var failError: NSError? = nil
         var shouldFail = false
         var failureReason = "There was an error creating or loading the application's saved data."
 
         // Make sure the application files directory is there
         do {
-            let properties = try self.applicationDocumentsDirectory.resourceValuesForKeys([NSURLIsDirectoryKey])
-            if !properties[NSURLIsDirectoryKey]!.boolValue {
+            let properties = try self.applicationDocumentsDirectory.resourceValues(forKeys: [URLResourceKey.isDirectoryKey])
+            if !properties[URLResourceKey.isDirectoryKey]!.boolValue {
                 failureReason = "Expected a folder to store application data, found a file \(self.applicationDocumentsDirectory.path)."
                 shouldFail = true
             }
@@ -170,7 +170,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let nserror = error as NSError
             if nserror.code == NSFileReadNoSuchFileError {
                 do {
-                    try fileManager.createDirectoryAtPath(self.applicationDocumentsDirectory.path!, withIntermediateDirectories: true, attributes: nil)
+                    try fileManager.createDirectory(atPath: self.applicationDocumentsDirectory.path!, withIntermediateDirectories: true, attributes: nil)
                 } catch {
                     failError = nserror
                 }
@@ -183,9 +183,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         var coordinator: NSPersistentStoreCoordinator? = nil
         if failError == nil {
             coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-            let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("CocoaAppCD.storedata")
+            let url = try! self.applicationDocumentsDirectory.appendingPathComponent("CocoaAppCD.storedata")
             do {
-                try coordinator!.addPersistentStoreWithType(NSXMLStoreType, configuration: nil, URL: url, options: nil)
+                try coordinator!.addPersistentStore(ofType: NSXMLStoreType, configurationName: nil, at: url, options: nil)
             } catch {
                 failError = error as NSError
             }
@@ -200,7 +200,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 dict[NSUnderlyingErrorKey] = failError
             }
             let error = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
-            NSApplication.sharedApplication().presentError(error)
+            NSApplication.shared().presentError(error)
             abort()
         } else {
             return coordinator!
@@ -210,14 +210,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     lazy var managedObjectContext: NSManagedObjectContext = {
         // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.) This property is optional since there are legitimate error conditions that could cause the creation of the context to fail.
         let coordinator = self.persistentStoreCoordinator
-        var managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+        var managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = coordinator
         return managedObjectContext
     }()
 
     // MARK: - Core Data Saving and Undo support
 
-    @IBAction func saveAction(sender: AnyObject!) {
+    @IBAction func saveAction(_ sender: AnyObject!) {
         // Performs the save action for the application, which is to send the save: message to the application's managed object context. Any encountered errors are presented to the user.
         if !managedObjectContext.commitEditing() {
             NSLog("\(NSStringFromClass(self.dynamicType)) unable to commit editing before saving")
@@ -227,26 +227,26 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 try managedObjectContext.save()
             } catch {
                 let nserror = error as NSError
-                NSApplication.sharedApplication().presentError(nserror)
+                NSApplication.shared().presentError(nserror)
             }
         }
     }
 
-    func windowWillReturnUndoManager(window: NSWindow) -> NSUndoManager? {
+    func windowWillReturnUndoManager(_ window: NSWindow) -> UndoManager? {
         // Returns the NSUndoManager for the application. In this case, the manager returned is that of the managed object context for the application.
         return managedObjectContext.undoManager
     }
 
-    func applicationShouldTerminate(sender: NSApplication) -> NSApplicationTerminateReply {
+    func applicationShouldTerminate(_ sender: NSApplication) -> NSApplicationTerminateReply {
         // Save changes in the application's managed object context before the application terminates.
         
         if !managedObjectContext.commitEditing() {
             NSLog("\(NSStringFromClass(self.dynamicType)) unable to commit editing to terminate")
-            return .TerminateCancel
+            return .terminateCancel
         }
         
         if !managedObjectContext.hasChanges {
-            return .TerminateNow
+            return .terminateNow
         }
         
         do {
@@ -256,7 +256,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             // Customize this code block to include application-specific recovery steps.
             let result = sender.presentError(nserror)
             if (result) {
-                return .TerminateCancel
+                return .terminateCancel
             }
             
             let question = NSLocalizedString("Could not save changes while quitting. Quit anyway?", comment: "Quit without saves error question message")
@@ -266,16 +266,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let alert = NSAlert()
             alert.messageText = question
             alert.informativeText = info
-            alert.addButtonWithTitle(quitButton)
-            alert.addButtonWithTitle(cancelButton)
+            alert.addButton(withTitle: quitButton)
+            alert.addButton(withTitle: cancelButton)
             
             let answer = alert.runModal()
             if answer == NSAlertFirstButtonReturn {
-                return .TerminateCancel
+                return .terminateCancel
             }
         }
         // If we got here, it is time to quit.
-        return .TerminateNow
+        return .terminateNow
     }
 
 }

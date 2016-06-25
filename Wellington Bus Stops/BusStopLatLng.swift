@@ -24,8 +24,8 @@ class BusStopLatLng: NSObject, MKAnnotation {
     }
     
     @objc
-    func launchDepartureBoard(sender: AnyObject?) {
-        let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+    func launchDepartureBoard(_ sender: AnyObject?) {
+        let appDelegate = NSApplication.shared().delegate as! AppDelegate
         appDelegate.openNewDepartureBoardWindow(sms)
     }
     
@@ -48,14 +48,14 @@ class BusStopLatLng: NSObject, MKAnnotation {
         
     }
     
-    class func getStop(sms: String, completion: (busStop: BusStopLatLng) -> (), error err: (sms: String) -> ()) {
-        let getEndpoint: String = "https://www.metlink.org.nz/api/v1/Stop/" + sms.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet())!
-        let session = NSURLSession.sharedSession()
-        let url = NSURL(string: getEndpoint)!
-        let task = session.dataTaskWithURL(url, completionHandler: { ( data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+    class func getStop(_ sms: String, completion: (busStop: BusStopLatLng) -> (), error err: (sms: String) -> ()) {
+        let getEndpoint: String = "https://www.metlink.org.nz/api/v1/Stop/" + sms.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlPathAllowed)!
+        let session = URLSession.shared()
+        let url = URL(string: getEndpoint)!
+        let task = session.dataTask(with: url, completionHandler: { ( data: Data?, response: URLResponse?, error: NSError?) -> Void in
             
             // Make sure we get an OK response
-            guard let realResponse = response as? NSHTTPURLResponse where
+            guard let realResponse = response as? HTTPURLResponse where
                 realResponse.statusCode == 200 else {
                     print("Not a 200 response")
                     err(sms: sms)
@@ -66,7 +66,7 @@ class BusStopLatLng: NSObject, MKAnnotation {
             do {
                 
                 // Parse the JSON to get the IP
-                let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+                let jsonDictionary = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
                 let bs = BusStopLatLng(stop: jsonDictionary)
                 completion(busStop: bs)
             } catch {
@@ -77,14 +77,14 @@ class BusStopLatLng: NSObject, MKAnnotation {
         task.resume()
     }
     
-    class func getDepartureTimes(sms: String, completion: (busStop: BusStopLatLng, departureTimes: [BusDeparture]) -> (), error err: () -> ()) {
-        let getEndpoint: String = "https://www.metlink.org.nz/api/v1/StopDepartures/" + sms.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet())!
-        let session = NSURLSession.sharedSession()
-        let url = NSURL(string: getEndpoint)!
-        let task = session.dataTaskWithURL(url, completionHandler: { ( data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+    class func getDepartureTimes(_ sms: String, completion: (busStop: BusStopLatLng, departureTimes: [BusDeparture]) -> (), error err: () -> ()) {
+        let getEndpoint: String = "https://www.metlink.org.nz/api/v1/StopDepartures/" + sms.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlPathAllowed)!
+        let session = URLSession.shared()
+        let url = URL(string: getEndpoint)!
+        let task = session.dataTask(with: url, completionHandler: { ( data: Data?, response: URLResponse?, error: NSError?) -> Void in
             
             // Make sure we get an OK response
-            guard let realResponse = response as? NSHTTPURLResponse where
+            guard let realResponse = response as? HTTPURLResponse where
                 realResponse.statusCode == 200 else {
                     print("Not a 200 response")
                     err()
@@ -95,7 +95,7 @@ class BusStopLatLng: NSObject, MKAnnotation {
             do {
                 
                 // Parse the JSON to get the IP
-                let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+                let jsonDictionary = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
                 let bs = BusStopLatLng(stop: jsonDictionary["Stop"] as! NSDictionary)
                 var departures = [BusDeparture]()
                 let departuresArray = jsonDictionary["Services"] as? NSArray
@@ -113,17 +113,17 @@ class BusStopLatLng: NSObject, MKAnnotation {
         task.resume()
     }
     
-    class func getStopsCsv(completion: (busStop: BusStopLatLng) -> ()) {
-        let file = NSBundle.mainBundle().pathForResource("stops", ofType:"txt")
+    class func getStopsCsv(_ completion: (busStop: BusStopLatLng) -> ()) {
+        let file = Bundle.main().pathForResource("stops", ofType:"txt")
         do {
-            let csvFile = try NSString(contentsOfFile: file!, encoding: NSUTF8StringEncoding) as String
-            let csvLines = csvFile.componentsSeparatedByString("\n")
+            let csvFile = try NSString(contentsOfFile: file!, encoding: String.Encoding.utf8.rawValue) as String
+            let csvLines = csvFile.components(separatedBy: "\n")
             //for i in 1...1500 {
             let endOfCsvFile = csvLines.count - 1
             for i in 1...endOfCsvFile {
                 let line = csvLines[i]
                 if line != "" {
-                    let lineParts = line.componentsSeparatedByString(",")
+                    let lineParts = line.components(separatedBy: ",")
                     do {
                         let lat:Double = Double(lineParts[4])!
                         let long:Double = Double(lineParts[5])!

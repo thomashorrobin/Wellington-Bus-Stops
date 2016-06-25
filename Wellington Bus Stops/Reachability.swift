@@ -11,7 +11,7 @@ import Cocoa
 import SystemConfiguration
 
 public class Reachability {
-    class func isConnectedToNetwork(alertUser: Bool) -> Bool {
+    class func isConnectedToNetwork(_ alertUser: Bool) -> Bool {
         var zeroAddress = sockaddr_in()
         zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
         zeroAddress.sin_family = sa_family_t(AF_INET)
@@ -29,7 +29,7 @@ public class Reachability {
             let alert = NSAlert()
             alert.messageText = "You're not connected to the internet."
             alert.informativeText = "Wellington Bus Stops requires a internet connection to work properly. Please connect to the internet and try again :)"
-            alert.addButtonWithTitle("OK")
+            alert.addButton(withTitle: "OK")
             alert.runModal()
         }
         return connected

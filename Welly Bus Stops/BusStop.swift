@@ -26,14 +26,14 @@ class BusStop: NSObject {
         self.sms = stop["Sms"] as! String!
     }
     
-    class func getStop(sms: String, completion: (busStop: BusStop) -> ()) {
-        let getEndpoint: String = "https://www.metlink.org.nz/api/v1/Stop/" + sms.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet())!
-        let session = NSURLSession.sharedSession()
-        let url = NSURL(string: getEndpoint)!
-        let task = session.dataTaskWithURL(url, completionHandler: { ( data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+    class func getStop(_ sms: String, completion: (busStop: BusStop) -> ()) {
+        let getEndpoint: String = "https://www.metlink.org.nz/api/v1/Stop/" + sms.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlPathAllowed)!
+        let session = URLSession.shared()
+        let url = URL(string: getEndpoint)!
+        let task = session.dataTask(with: url, completionHandler: { ( data: Data?, response: URLResponse?, error: NSError?) -> Void in
             
             // Make sure we get an OK response
-            guard let realResponse = response as? NSHTTPURLResponse where
+            guard let realResponse = response as? HTTPURLResponse where
                 realResponse.statusCode == 200 else {
                     print("Not a 200 response")
                     return
@@ -43,7 +43,7 @@ class BusStop: NSObject {
             do {
                 
                 // Parse the JSON to get the IP
-                let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+                let jsonDictionary = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
                 let bs = BusStop(stop: jsonDictionary)
                 completion(busStop: bs)
             } catch {
@@ -54,14 +54,14 @@ class BusStop: NSObject {
         task.resume()
     }
     
-    class func getDepartureTimes(sms: String, completion: (busStop: BusStop, departureTimes: [BusDeparture]) -> ()) {
-        let getEndpoint: String = "https://www.metlink.org.nz/api/v1/StopDepartures/" + sms.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet())!
-        let session = NSURLSession.sharedSession()
-        let url = NSURL(string: getEndpoint)!
-        let task = session.dataTaskWithURL(url, completionHandler: { ( data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+    class func getDepartureTimes(_ sms: String, completion: (busStop: BusStop, departureTimes: [BusDeparture]) -> ()) {
+        let getEndpoint: String = "https://www.metlink.org.nz/api/v1/StopDepartures/" + sms.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlPathAllowed)!
+        let session = URLSession.shared()
+        let url = URL(string: getEndpoint)!
+        let task = session.dataTask(with: url, completionHandler: { ( data: Data?, response: URLResponse?, error: NSError?) -> Void in
             
             // Make sure we get an OK response
-            guard let realResponse = response as? NSHTTPURLResponse where
+            guard let realResponse = response as? HTTPURLResponse where
                 realResponse.statusCode == 200 else {
                     print("Not a 200 response")
                     return
@@ -71,7 +71,7 @@ class BusStop: NSObject {
             do {
                 
                 // Parse the JSON to get the IP
-                let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+                let jsonDictionary = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
                 let bs = BusStop(stop: jsonDictionary["Stop"] as! NSDictionary)
                 var departures = [BusDeparture]()
                 let services = jsonDictionary["Services"]
@@ -92,14 +92,14 @@ class BusStop: NSObject {
         task.resume()
     }
     
-    class func searchStops(searchTerm: String, completion: (searchResults: [BusStop]) -> Void){
-        let getEndpoint: String = "https://www.metlink.org.nz/api/v1/StopSearch/" + searchTerm.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet())!
-        let session = NSURLSession.sharedSession()
-        let url = NSURL(string: getEndpoint)!
+    class func searchStops(_ searchTerm: String, completion: (searchResults: [BusStop]) -> Void){
+        let getEndpoint: String = "https://www.metlink.org.nz/api/v1/StopSearch/" + searchTerm.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlPathAllowed)!
+        let session = URLSession.shared()
+        let url = URL(string: getEndpoint)!
         print(url.absoluteString)
-        let task = session.dataTaskWithURL(url, completionHandler: { ( data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+        let task = session.dataTask(with: url, completionHandler: { ( data: Data?, response: URLResponse?, error: NSError?) -> Void in
             
-            guard let realResponse = response as? NSHTTPURLResponse where
+            guard let realResponse = response as? HTTPURLResponse where
                 realResponse.statusCode == 200 else {
                     print("Not a 200 response")
                     return
@@ -111,7 +111,7 @@ class BusStop: NSObject {
             do {
                 
                 // Parse the JSON to get the IP
-                let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSArray
+                let jsonDictionary = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSArray
                 
                 for j in jsonDictionary {
                     let bs = BusStop(stop: j as! NSDictionary)
@@ -121,7 +121,7 @@ class BusStop: NSObject {
                 print("bad things happened")
             }
             
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            DispatchQueue.main.async(execute: { () -> Void in
                 completion(searchResults: parsedResults)
             })
         })

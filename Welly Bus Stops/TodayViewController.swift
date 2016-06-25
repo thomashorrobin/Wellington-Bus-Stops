@@ -31,9 +31,9 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
         
         do {
             let fetchRequest = NSFetchRequest(entityName: "BusStop")
-            let results = try managedObjectContext.executeFetchRequest(fetchRequest)
+            let results = try managedObjectContext.fetch(fetchRequest)
             for managedObject in results {
-                busStops.append(BusStop(busStopName: managedObject.valueForKey("name")!.description, sms: managedObject.valueForKey("sms")!.description))
+                busStops.append(BusStop(busStopName: managedObject.value(forKey: "name")!.description, sms: managedObject.value(forKey: "sms")!.description))
             }
         } catch {
             
@@ -41,12 +41,12 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
         
         // Set up the widget list view controller.
         // The contents property should contain an object for each row in the list.
-        dispatch_after(0, dispatch_get_main_queue(), {
+        DispatchQueue.main.after(when: 0, block: {
             self.listViewController.contents = busStops
         })
     }
 
-    override func dismissViewController(viewController: NSViewController) {
+    override func dismiss(_ viewController: NSViewController) {
         super.dismissViewController(viewController)
 
         // The search controller has been dismissed and is no longer needed.
@@ -57,16 +57,16 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
 
     // MARK: - NCWidgetProviding
 
-    func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)!) {
+    func widgetPerformUpdate(completionHandler: ((NCUpdateResult) -> Void)) {
         // Refresh the widget's contents in preparation for a snapshot.
         // Call the completion handler block after the widget's contents have been
         // refreshed. Pass NCUpdateResultNoData to indicate that nothing has changed
         // or NCUpdateResultNewData to indicate that there is new data since the
         // last invocation of this method.
-        completionHandler(.NewData)
+        completionHandler(.newData)
     }
 
-    func widgetMarginInsetsForProposedMarginInsets(defaultMarginInset: NSEdgeInsets) -> NSEdgeInsets {
+    func widgetMarginInsets(forProposedMarginInsets defaultMarginInset: EdgeInsets) -> EdgeInsets {
         // Override the left margin so that the list view is flush with the edge.
         var newInsets = defaultMarginInset
         newInsets.left = 0
@@ -94,14 +94,14 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
 
     // MARK: - NCWidgetListViewDelegate
 
-    func widgetList(list: NCWidgetListViewController!, viewControllerForRow row: Int) -> NSViewController! {
+    func widgetList(_ list: NCWidgetListViewController, viewControllerForRow row: Int) -> NSViewController {
         // Return a new view controller subclass for displaying an item of widget
         // content. The NCWidgetListViewController will set the representedObject
         // of this view controller to one of the objects in its contents array.
         return ListRowViewController()
     }
 
-    func widgetListPerformAddAction(list: NCWidgetListViewController!) {
+    func widgetListPerformAddAction(_ list: NCWidgetListViewController) {
         // The user has clicked the add button in the list view.
         // Display a search controller for adding new content to the widget.
         self.searchController = NCWidgetSearchViewController()
@@ -110,30 +110,30 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
         // Present the search view controller with an animation.
         // Implement dismissViewController to observe when the view controller
         // has been dismissed and is no longer needed.
-        self.presentViewControllerInWidget(self.searchController)
+        self.present(inWidget: self.searchController!)
     }
 
-    func widgetList(list: NCWidgetListViewController!, shouldReorderRow row: Int) -> Bool {
+    func widgetList(_ list: NCWidgetListViewController, shouldReorderRow row: Int) -> Bool {
         // Return true to allow the item to be reordered in the list by the user.
         return false
     }
 
-    func widgetList(list: NCWidgetListViewController!, didReorderRow row: Int, toRow newIndex: Int) {
+    func widgetList(_ list: NCWidgetListViewController, didReorderRow row: Int, toRow newIndex: Int) {
         // The user has reordered an item in the list.
     }
 
-    func widgetList(list: NCWidgetListViewController!, shouldRemoveRow row: Int) -> Bool {
+    func widgetList(_ list: NCWidgetListViewController, shouldRemoveRow row: Int) -> Bool {
         // Return true to allow the item to be removed from the list by the user.
         return true
     }
 
-    func widgetList(list: NCWidgetListViewController!, didRemoveRow row: Int) {
+    func widgetList(_ list: NCWidgetListViewController, didRemoveRow row: Int) {
         // The user has removed an item from the list.
     }
 
     // MARK: - NCWidgetSearchViewDelegate
 
-    func widgetSearch(searchController: NCWidgetSearchViewController!, searchForTerm searchTerm: String!, maxResults max: Int) {
+    func widgetSearch(_ searchController: NCWidgetSearchViewController, searchForTerm searchTerm: String, maxResults max: Int) {
         // The user has entered a search term. Set the controller's searchResults property to the matching items.
         searchController.searchResults = []
         BusStop.searchStops(searchTerm, completion: {(searchResults: [BusStop]) -> Void in
@@ -141,41 +141,41 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
         })
     }
 
-    func widgetSearchTermCleared(searchController: NCWidgetSearchViewController!) {
+    func widgetSearchTermCleared(_ searchController: NCWidgetSearchViewController) {
         // The user has cleared the search field. Remove the search results.
         searchController.searchResults = nil
     }
 
-    func widgetSearch(searchController: NCWidgetSearchViewController!, resultSelected object: AnyObject!) {
+    func widgetSearch(_ searchController: NCWidgetSearchViewController, resultSelected object: AnyObject) {
         // The user has selected a search result from the list.
     }
     
     // MARK: - Core Data stack
     
-    lazy var applicationDocumentsDirectory: NSURL = {
+    lazy var applicationDocumentsDirectory: URL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "wccapps.Wellington_Bus_Stops" in the user's Application Support directory.
-        let urls = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier("6H77GT49V5.group.wccapps.bus_stop_data") //(.ApplicationSupportDirectory, inDomains: .UserDomainMask)
+        let urls = FileManager.default().containerURLForSecurityApplicationGroupIdentifier("6H77GT49V5.group.wccapps.bus_stop_data") //(.ApplicationSupportDirectory, inDomains: .UserDomainMask)
         let appSupportURL = urls
-        return appSupportURL!.URLByAppendingPathComponent("6H77GT49V5.group.wccapps.bus_stop_data")
+        return try! appSupportURL!.appendingPathComponent("6H77GT49V5.group.wccapps.bus_stop_data")
     }()
     
     lazy var managedObjectModel: NSManagedObjectModel = {
         // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
-        let modelURL = NSBundle.mainBundle().URLForResource("Wellington_Bus_Stops", withExtension: "momd")!
-        return NSManagedObjectModel(contentsOfURL: modelURL)!
+        let modelURL = Bundle.main().urlForResource("Wellington_Bus_Stops", withExtension: "momd")!
+        return NSManagedObjectModel(contentsOf: modelURL)!
     }()
     
     lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
         // The persistent store coordinator for the application. This implementation creates and returns a coordinator, having added the store for the application to it. (The directory for the store is created, if necessary.) This property is optional since there are legitimate error conditions that could cause the creation of the store to fail.
-        let fileManager = NSFileManager.defaultManager()
+        let fileManager = FileManager.default()
         var failError: NSError? = nil
         var shouldFail = false
         var failureReason = "There was an error creating or loading the application's saved data."
         
         // Make sure the application files directory is there
         do {
-            let properties = try self.applicationDocumentsDirectory.resourceValuesForKeys([NSURLIsDirectoryKey])
-            if !properties[NSURLIsDirectoryKey]!.boolValue {
+            let properties = try self.applicationDocumentsDirectory.resourceValues(forKeys: [URLResourceKey.isDirectoryKey])
+            if !properties[URLResourceKey.isDirectoryKey]!.boolValue {
                 failureReason = "Expected a folder to store application data, found a file \(self.applicationDocumentsDirectory.path)."
                 shouldFail = true
             }
@@ -183,7 +183,7 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
             let nserror = error as NSError
             if nserror.code == NSFileReadNoSuchFileError {
                 do {
-                    try fileManager.createDirectoryAtPath(self.applicationDocumentsDirectory.path!, withIntermediateDirectories: true, attributes: nil)
+                    try fileManager.createDirectory(atPath: self.applicationDocumentsDirectory.path!, withIntermediateDirectories: true, attributes: nil)
                 } catch {
                     failError = nserror
                 }
@@ -196,9 +196,9 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
         var coordinator: NSPersistentStoreCoordinator? = nil
         if failError == nil {
             coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-            let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("CocoaAppCD.storedata")
+            let url = try! self.applicationDocumentsDirectory.appendingPathComponent("CocoaAppCD.storedata")
             do {
-                try coordinator!.addPersistentStoreWithType(NSXMLStoreType, configuration: nil, URL: url, options: nil)
+                try coordinator!.addPersistentStore(ofType: NSXMLStoreType, configurationName: nil, at: url, options: nil)
             } catch {
                 failError = error as NSError
             }
@@ -213,7 +213,7 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
                 dict[NSUnderlyingErrorKey] = failError
             }
             let error = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
-            NSApplication.sharedApplication().presentError(error)
+            NSApplication.shared().presentError(error)
             abort()
         } else {
             return coordinator!
@@ -223,14 +223,14 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
     lazy var managedObjectContext: NSManagedObjectContext = {
         // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.) This property is optional since there are legitimate error conditions that could cause the creation of the context to fail.
         let coordinator = self.persistentStoreCoordinator
-        var managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+        var managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = coordinator
         return managedObjectContext
     }()
     
     // MARK: - Core Data Saving and Undo support
     
-    @IBAction func saveAction(sender: AnyObject!) {
+    @IBAction func saveAction(_ sender: AnyObject!) {
         // Performs the save action for the application, which is to send the save: message to the application's managed object context. Any encountered errors are presented to the user.
         if !managedObjectContext.commitEditing() {
             NSLog("\(NSStringFromClass(self.dynamicType)) unable to commit editing before saving")
@@ -240,26 +240,26 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
                 try managedObjectContext.save()
             } catch {
                 let nserror = error as NSError
-                NSApplication.sharedApplication().presentError(nserror)
+                NSApplication.shared().presentError(nserror)
             }
         }
     }
     
-    func windowWillReturnUndoManager(window: NSWindow) -> NSUndoManager? {
+    func windowWillReturnUndoManager(_ window: NSWindow) -> UndoManager? {
         // Returns the NSUndoManager for the application. In this case, the manager returned is that of the managed object context for the application.
         return managedObjectContext.undoManager
     }
     
-    func applicationShouldTerminate(sender: NSApplication) -> NSApplicationTerminateReply {
+    func applicationShouldTerminate(_ sender: NSApplication) -> NSApplicationTerminateReply {
         // Save changes in the application's managed object context before the application terminates.
         
         if !managedObjectContext.commitEditing() {
             NSLog("\(NSStringFromClass(self.dynamicType)) unable to commit editing to terminate")
-            return .TerminateCancel
+            return .terminateCancel
         }
         
         if !managedObjectContext.hasChanges {
-            return .TerminateNow
+            return .terminateNow
         }
         
         do {
@@ -269,7 +269,7 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
             // Customize this code block to include application-specific recovery steps.
             let result = sender.presentError(nserror)
             if (result) {
-                return .TerminateCancel
+                return .terminateCancel
             }
             
             let question = NSLocalizedString("Could not save changes while quitting. Quit anyway?", comment: "Quit without saves error question message")
@@ -279,16 +279,16 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
             let alert = NSAlert()
             alert.messageText = question
             alert.informativeText = info
-            alert.addButtonWithTitle(quitButton)
-            alert.addButtonWithTitle(cancelButton)
+            alert.addButton(withTitle: quitButton)
+            alert.addButton(withTitle: cancelButton)
             
             let answer = alert.runModal()
             if answer == NSAlertFirstButtonReturn {
-                return .TerminateCancel
+                return .terminateCancel
             }
         }
         // If we got here, it is time to quit.
-        return .TerminateNow
+        return .terminateNow
     }
 
 }

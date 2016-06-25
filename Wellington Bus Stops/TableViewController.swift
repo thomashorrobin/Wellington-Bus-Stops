@@ -10,27 +10,27 @@ import Cocoa
 
 class TableViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, ITableDataRefreshable {
     
-    let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+    let appDelegate = NSApplication.shared().delegate as! AppDelegate
     var busStops = [NSManagedObject]()
     @IBOutlet weak var tableView: NSTableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         readBusStopsFromCoreData()
-        tableView.setDelegate(self)
-        tableView.setDataSource(self)
+        tableView.delegate = self
+        tableView.dataSource = self
         appDelegate.tablesToRefresh.append(self)
         tableView.doubleAction = #selector(TableViewController.tableViewDoubleClick)
     }
     
-    @IBAction func addRemoveControlsClicked(sender: NSSegmentedControl) {
+    @IBAction func addRemoveControlsClicked(_ sender: NSSegmentedControl) {
         let clickedButtonIndex = sender.selectedSegment
         if clickedButtonIndex == 0 {
             addBusStopDialog()
         } else if clickedButtonIndex == 1 {
             let selectedRow = tableView.selectedRow
             if selectedRow != -1 {
-                appDelegate.deleteBusStop(busStops[selectedRow].valueForKey("sms")! as! String)
+                appDelegate.deleteBusStop(busStops[selectedRow].value(forKey: "sms")! as! String)
             }
         }
     }
@@ -39,8 +39,8 @@ class TableViewController: NSViewController, NSTableViewDelegate, NSTableViewDat
         if Reachability.isConnectedToNetwork(true) {
             let alert = NSAlert()
             alert.messageText = "Add stop to widget by bus stop number"
-            alert.addButtonWithTitle("OK")
-            alert.addButtonWithTitle("Cancel")
+            alert.addButton(withTitle: "OK")
+            alert.addButton(withTitle: "Cancel")
             let tf = NSTextField(frame: NSRect(x: 0, y: 0, width: 200, height: 24))
             alert.accessoryView = tf
             let response: NSModalResponse = alert.runModal()
@@ -54,24 +54,24 @@ class TableViewController: NSViewController, NSTableViewDelegate, NSTableViewDat
         readBusStopsFromCoreData()
     }
     
-    func numberOfRowsInTableView(tableView: NSTableView) -> Int {
+    func numberOfRows(in tableView: NSTableView) -> Int {
         return busStops.count
     }
     
-    func tableView(tableView: NSTableView, objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
+    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
         
         if tableColumn!.title == "Name"
         {
-            return busStops[row].valueForKey("name")
+            return busStops[row].value(forKey: "name")
         }
         else
         {
-            return busStops[row].valueForKey("sms")
+            return busStops[row].value(forKey: "sms")
         }
     }
     
     func tableViewDoubleClick(){
-        let sms = busStops[tableView.selectedRow].valueForKey("sms") as! String
+        let sms = busStops[tableView.selectedRow].value(forKey: "sms") as! String
         appDelegate.openNewDepartureBoardWindow(sms)
     }
     
@@ -80,7 +80,7 @@ class TableViewController: NSViewController, NSTableViewDelegate, NSTableViewDat
         let managedContext = appDelegate.managedObjectContext
         let fetchRequest = NSFetchRequest(entityName: "BusStop")
         do {
-            let results = try managedContext.executeFetchRequest(fetchRequest)
+            let results = try managedContext.fetch(fetchRequest)
             self.busStops = results as! [NSManagedObject]
         } catch let error as NSError {
             print("Could not fetch \(error), \(error.userInfo)")

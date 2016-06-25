@@ -13,12 +13,12 @@ class ListRowViewController: NSViewController, NSTableViewDelegate, NSTableViewD
     var departureTimes = [BusDeparture]()
     var sms = "4323"
     
-    @IBAction func refreshDepatureData(sender: AnyObject) {
+    @IBAction func refreshDepatureData(_ sender: AnyObject) {
         self.departureTimes.removeAll()
         self.tableView.reloadData()
         BusStop.getDepartureTimes(sms, completion: {(busStop: BusStop, departureTimes: [BusDeparture]) -> Void in
-            self.departureTimes.appendContentsOf(departureTimes)
-            dispatch_async(dispatch_get_main_queue(), {
+            self.departureTimes.append(contentsOf: departureTimes)
+            DispatchQueue.main.async(execute: {
                 self.tableView.reloadData()
             })
         })
@@ -32,26 +32,26 @@ class ListRowViewController: NSViewController, NSTableViewDelegate, NSTableViewD
 
     override func loadView() {
         super.loadView()
-        tableView.setDelegate(self)
-        tableView.setDataSource(self)
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
     override func viewDidAppear() {
         let thisBusStop = self.representedObject as! BusStop
         sms = thisBusStop.sms
         BusStop.getDepartureTimes(thisBusStop.sms, completion: {(busStop: BusStop, departureTimes: [BusDeparture]) -> Void in
-            self.departureTimes.appendContentsOf(departureTimes)
-            dispatch_async(dispatch_get_main_queue(), {
+            self.departureTimes.append(contentsOf: departureTimes)
+            DispatchQueue.main.async(execute: {
                 self.tableView.reloadData()
             })
         })
     }
     
-    func numberOfRowsInTableView(tableView: NSTableView) -> Int {
+    func numberOfRows(in tableView: NSTableView) -> Int {
         return departureTimes.count
     }
     
-    func tableView(tableView: NSTableView, objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
+    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
         
         if tableColumn!.title == "Route"
         {
