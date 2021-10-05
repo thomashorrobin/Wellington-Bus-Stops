@@ -43,7 +43,7 @@ class MapViewController: NSViewController, MKMapViewDelegate {
         let button = NSButton()
         button.title = "show"
         button.target = bs
-        button.bezelStyle = NSBezelStyle.recessedBezelStyle
+		button.bezelStyle = NSButton.BezelStyle.recessed
         
         button.action = #selector(bs.launchDepartureBoard)
         

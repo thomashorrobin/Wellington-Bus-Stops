@@ -22,7 +22,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func openNewDepartureBoardWindow(_ sms: String) {
         
-        if !Reachability.isConnectedToNetwork(true){
+        if !InternetConnectionManager.isConnectedToNetwork(){
             return
         }
         
@@ -65,7 +65,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         })
     }
     
-    func saveBusStop(_ busStop: BusStopLatLng, completetion: (busStop: NSManagedObject) -> Void) {
+	func saveBusStop(_ busStop: BusStopLatLng, completetion: (_ busStop: NSManagedObject) -> Void) {
         
         if busStopExists(busStop.sms) {
             print("Bus stop: \(busStop.sms) already exisits. Can't be duplicated")
@@ -83,7 +83,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         do {
             try managedObjectContext.save()
-            completetion(busStop: bs)
+			completetion(bs)
         } catch let error as NSError  {
             print("Could not save \(error), \(error.userInfo)")
         }
@@ -91,7 +91,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func deleteBusStop(_ sms: String) {
         
-        let fetchRequest = NSFetchRequest(entityName: "BusStop")
+		let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "BusStop")
         
         do {
             let results = try managedObjectContext.fetch(fetchRequest)
@@ -109,7 +109,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func busStopExists(_ sms: String) -> Bool {
-        let fetchRequest = NSFetchRequest(entityName: "BusStop")
+		let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "BusStop")
         
         do {
             let results = try managedObjectContext.fetch(fetchRequest)
@@ -125,7 +125,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return false
     }
     
-    func applicationShouldTerminate(afterLastWindowClosed sender: NSApplication) -> Bool {
+	func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
         return true
     }
 
@@ -141,20 +141,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     lazy var applicationDocumentsDirectory: URL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "wccapps.Wellington_Bus_Stops" in the user's Application Support directory.
-        let urls = FileManager.default().containerURLForSecurityApplicationGroupIdentifier("6H77GT49V5.group.wccapps.bus_stop_data")
+		let urls = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "6H77GT49V5.group.wccapps.bus_stop_data")
         let appSupportURL = urls!
-        return try! appSupportURL.appendingPathComponent("6H77GT49V5.group.wccapps.bus_stop_data")
+        return appSupportURL.appendingPathComponent("6H77GT49V5.group.wccapps.bus_stop_data")
     }()
 
     lazy var managedObjectModel: NSManagedObjectModel = {
         // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
-        let modelURL = Bundle.main().urlForResource("Wellington_Bus_Stops", withExtension: "momd")!
+		let modelURL = Bundle.main.url(forResource: "Wellington_Bus_Stops", withExtension: "momd")!
         return NSManagedObjectModel(contentsOf: modelURL)!
     }()
 
     lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
         // The persistent store coordinator for the application. This implementation creates and returns a coordinator, having added the store for the application to it. (The directory for the store is created, if necessary.) This property is optional since there are legitimate error conditions that could cause the creation of the store to fail.
-        let fileManager = FileManager.default()
+		let fileManager = FileManager.default
         var failError: NSError? = nil
         var shouldFail = false
         var failureReason = "There was an error creating or loading the application's saved data."
@@ -162,7 +162,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Make sure the application files directory is there
         do {
             let properties = try self.applicationDocumentsDirectory.resourceValues(forKeys: [URLResourceKey.isDirectoryKey])
-            if !properties[URLResourceKey.isDirectoryKey]!.boolValue {
+			if !(properties.allValues[URLResourceKey.isDirectoryKey]! as AnyObject).boolValue {
                 failureReason = "Expected a folder to store application data, found a file \(self.applicationDocumentsDirectory.path)."
                 shouldFail = true
             }
@@ -170,7 +170,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let nserror = error as NSError
             if nserror.code == NSFileReadNoSuchFileError {
                 do {
-                    try fileManager.createDirectory(atPath: self.applicationDocumentsDirectory.path!, withIntermediateDirectories: true, attributes: nil)
+					try fileManager.createDirectory(atPath: self.applicationDocumentsDirectory.path, withIntermediateDirectories: true, attributes: nil)
                 } catch {
                     failError = nserror
                 }
@@ -183,7 +183,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         var coordinator: NSPersistentStoreCoordinator? = nil
         if failError == nil {
             coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-            let url = try! self.applicationDocumentsDirectory.appendingPathComponent("CocoaAppCD.storedata")
+            let url = self.applicationDocumentsDirectory.appendingPathComponent("CocoaAppCD.storedata")
             do {
                 try coordinator!.addPersistentStore(ofType: NSXMLStoreType, configurationName: nil, at: url, options: nil)
             } catch {
@@ -194,13 +194,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if shouldFail || (failError != nil) {
             // Report any error we got.
             var dict = [String: AnyObject]()
-            dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
-            dict[NSLocalizedFailureReasonErrorKey] = failureReason
+			dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data" as AnyObject
+			dict[NSLocalizedFailureReasonErrorKey] = failureReason as AnyObject
             if failError != nil {
                 dict[NSUnderlyingErrorKey] = failError
             }
             let error = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
-            NSApplication.shared().presentError(error)
+			NSApplication.shared.presentError(error)
             abort()
         } else {
             return coordinator!
@@ -220,14 +220,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func saveAction(_ sender: AnyObject!) {
         // Performs the save action for the application, which is to send the save: message to the application's managed object context. Any encountered errors are presented to the user.
         if !managedObjectContext.commitEditing() {
-            NSLog("\(NSStringFromClass(self.dynamicType)) unable to commit editing before saving")
+			NSLog("\(NSStringFromClass(type(of: self))) unable to commit editing before saving")
         }
         if managedObjectContext.hasChanges {
             do {
                 try managedObjectContext.save()
             } catch {
                 let nserror = error as NSError
-                NSApplication.shared().presentError(nserror)
+				NSApplication.shared.presentError(nserror)
             }
         }
     }
@@ -237,11 +237,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return managedObjectContext.undoManager
     }
 
-    func applicationShouldTerminate(_ sender: NSApplication) -> NSApplicationTerminateReply {
+	func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
         // Save changes in the application's managed object context before the application terminates.
         
         if !managedObjectContext.commitEditing() {
-            NSLog("\(NSStringFromClass(self.dynamicType)) unable to commit editing to terminate")
+			NSLog("\(NSStringFromClass(type(of: self))) unable to commit editing to terminate")
             return .terminateCancel
         }
         
@@ -270,7 +270,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             alert.addButton(withTitle: cancelButton)
             
             let answer = alert.runModal()
-            if answer == NSAlertFirstButtonReturn {
+			if answer == NSApplication.ModalResponse.alertFirstButtonReturn {
                 return .terminateCancel
             }
         }

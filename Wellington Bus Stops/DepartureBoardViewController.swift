@@ -8,6 +8,10 @@
 
 import Cocoa
 
+enum DepartureBoardErrors: Error {
+	case dataDoesntExist
+}
+
 class DepartureBoardViewController: NSViewController, ITableDataRefreshable, NSTableViewDelegate, NSTableViewDataSource {
     
     var busStop: BusStopLatLng?
@@ -17,7 +21,7 @@ class DepartureBoardViewController: NSViewController, ITableDataRefreshable, NST
     var departures = [BusDeparture]()
     
     func refreshTableData() {
-        let appDelegate = NSApplication.shared().delegate as! AppDelegate
+		let appDelegate = NSApplication.shared.delegate as! AppDelegate
         setSavedToWidgetStatus(appDelegate.busStopExists(sms))
     }
     
@@ -47,7 +51,7 @@ class DepartureBoardViewController: NSViewController, ITableDataRefreshable, NST
     }
     
     @IBAction func addOrRemoveBusStop(_ sender: NSButton) {
-        let appDelegate = NSApplication.shared().delegate as! AppDelegate
+		let appDelegate = NSApplication.shared.delegate as! AppDelegate
         if !self.savedToWidget {
             appDelegate.saveBusStop(busStop!, completetion: {(busStop: NSManagedObject) -> Void in
                 appDelegate.refreshTableData()
@@ -66,7 +70,7 @@ class DepartureBoardViewController: NSViewController, ITableDataRefreshable, NST
         // Do view setup here.
     }
     
-    func populateDepartureBoard(_ sms: String, savedToWidget: Bool, kill: () -> ()) {
+	func populateDepartureBoard(_ sms: String, savedToWidget: Bool, kill: @escaping () -> ()) {
         self.sms = sms
         setSavedToWidgetStatus(savedToWidget)
         BusStopLatLng.getDepartureTimes(sms, completion: {(busStop: BusStopLatLng, departureTimes: [BusDeparture]) -> Void in
@@ -84,23 +88,24 @@ class DepartureBoardViewController: NSViewController, ITableDataRefreshable, NST
         return departures.count
     }
     
-    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
-        
+	private func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) throws -> AnyObject? {
+
         if tableColumn!.title == "Route"
         {
-            return departures[row].route
+			return departures[row].route as AnyObject
         }
         else if tableColumn!.title == "Destination"
         {
-            return departures[row].destination
+            return departures[row].destination as AnyObject
         }
         else if tableColumn!.title == "Departure"
         {
-            return departures[row].timeToDeparture.description
+            return departures[row].timeToDeparture.description as AnyObject
         }
         else
         {
-            return "ERROR"
+			throw DepartureBoardErrors.dataDoesntExist
+			
         }
     }
     

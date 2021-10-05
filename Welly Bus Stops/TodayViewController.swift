@@ -9,6 +9,7 @@
 import Cocoa
 import NotificationCenter
 import CoreData
+import WidgetKit
 
 class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListViewDelegate, NCWidgetSearchViewDelegate {
 
@@ -30,10 +31,10 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
         var busStops = [BusStop]()
         
         do {
-            let fetchRequest = NSFetchRequest(entityName: "BusStop")
+			let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "BusStop")
             let results = try managedObjectContext.fetch(fetchRequest)
             for managedObject in results {
-                busStops.append(BusStop(busStopName: managedObject.value(forKey: "name")!.description, sms: managedObject.value(forKey: "sms")!.description))
+				busStops.append(BusStop(busStopName: ((managedObject as AnyObject).value(forKey: "name")! as AnyObject).description, sms: ((managedObject as AnyObject).value(forKey: "sms")! as AnyObject).description))
             }
         } catch {
             
@@ -47,7 +48,7 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
     }
 
     override func dismiss(_ viewController: NSViewController) {
-        super.dismissViewController(viewController)
+		super.dismiss(viewController)
 
         // The search controller has been dismissed and is no longer needed.
         if viewController == self.searchController {
@@ -154,20 +155,20 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
     
     lazy var applicationDocumentsDirectory: URL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "wccapps.Wellington_Bus_Stops" in the user's Application Support directory.
-        let urls = FileManager.default().containerURLForSecurityApplicationGroupIdentifier("6H77GT49V5.group.wccapps.bus_stop_data") //(.ApplicationSupportDirectory, inDomains: .UserDomainMask)
+		let urls = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "6H77GT49V5.group.wccapps.bus_stop_data") //(.ApplicationSupportDirectory, inDomains: .UserDomainMask)
         let appSupportURL = urls
         return try! appSupportURL!.appendingPathComponent("6H77GT49V5.group.wccapps.bus_stop_data")
     }()
     
     lazy var managedObjectModel: NSManagedObjectModel = {
         // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
-        let modelURL = Bundle.main().urlForResource("Wellington_Bus_Stops", withExtension: "momd")!
+		let modelURL = Bundle.main.urlForResource("Wellington_Bus_Stops", withExtension: "momd")!
         return NSManagedObjectModel(contentsOf: modelURL)!
     }()
     
     lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
         // The persistent store coordinator for the application. This implementation creates and returns a coordinator, having added the store for the application to it. (The directory for the store is created, if necessary.) This property is optional since there are legitimate error conditions that could cause the creation of the store to fail.
-        let fileManager = FileManager.default()
+		let fileManager = FileManager.default
         var failError: NSError? = nil
         var shouldFail = false
         var failureReason = "There was an error creating or loading the application's saved data."
@@ -183,7 +184,7 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
             let nserror = error as NSError
             if nserror.code == NSFileReadNoSuchFileError {
                 do {
-                    try fileManager.createDirectory(atPath: self.applicationDocumentsDirectory.path!, withIntermediateDirectories: true, attributes: nil)
+					try fileManager.createDirectory(atPath: self.applicationDocumentsDirectory.path, withIntermediateDirectories: true, attributes: nil)
                 } catch {
                     failError = nserror
                 }
@@ -207,13 +208,13 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
         if shouldFail || (failError != nil) {
             // Report any error we got.
             var dict = [String: AnyObject]()
-            dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
-            dict[NSLocalizedFailureReasonErrorKey] = failureReason
+			dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data" as AnyObject
+			dict[NSLocalizedFailureReasonErrorKey] = failureReason as AnyObject
             if failError != nil {
                 dict[NSUnderlyingErrorKey] = failError
             }
             let error = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
-            NSApplication.shared().presentError(error)
+            NSApplication.shared.presentError(error)
             abort()
         } else {
             return coordinator!
@@ -233,14 +234,14 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
     @IBAction func saveAction(_ sender: AnyObject!) {
         // Performs the save action for the application, which is to send the save: message to the application's managed object context. Any encountered errors are presented to the user.
         if !managedObjectContext.commitEditing() {
-            NSLog("\(NSStringFromClass(self.dynamicType)) unable to commit editing before saving")
+			NSLog("\(NSStringFromClass(type(of: self))) unable to commit editing before saving")
         }
         if managedObjectContext.hasChanges {
             do {
                 try managedObjectContext.save()
             } catch {
                 let nserror = error as NSError
-                NSApplication.shared().presentError(nserror)
+                NSApplication.shared.presentError(nserror)
             }
         }
     }
@@ -250,11 +251,11 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
         return managedObjectContext.undoManager
     }
     
-    func applicationShouldTerminate(_ sender: NSApplication) -> NSApplicationTerminateReply {
+	func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
         // Save changes in the application's managed object context before the application terminates.
         
         if !managedObjectContext.commitEditing() {
-            NSLog("\(NSStringFromClass(self.dynamicType)) unable to commit editing to terminate")
+			NSLog("\(NSStringFromClass(type(of: self))) unable to commit editing to terminate")
             return .terminateCancel
         }
         
@@ -283,7 +284,7 @@ class TodayViewController: NSViewController, NCWidgetProviding, NCWidgetListView
             alert.addButton(withTitle: cancelButton)
             
             let answer = alert.runModal()
-            if answer == NSAlertFirstButtonReturn {
+			if answer == NSApplication.ModalResponse.alertFirstButtonReturn {
                 return .terminateCancel
             }
         }

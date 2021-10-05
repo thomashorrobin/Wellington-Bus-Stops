@@ -10,7 +10,7 @@ import Cocoa
 
 class TableViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, ITableDataRefreshable {
     
-    let appDelegate = NSApplication.shared().delegate as! AppDelegate
+	let appDelegate = NSApplication.shared.delegate as! AppDelegate
     var busStops = [NSManagedObject]()
     @IBOutlet weak var tableView: NSTableView!
 
@@ -36,15 +36,15 @@ class TableViewController: NSViewController, NSTableViewDelegate, NSTableViewDat
     }
     
     func addBusStopDialog() {
-        if Reachability.isConnectedToNetwork(true) {
+        if InternetConnectionManager.isConnectedToNetwork() {
             let alert = NSAlert()
             alert.messageText = "Add stop to widget by bus stop number"
             alert.addButton(withTitle: "OK")
             alert.addButton(withTitle: "Cancel")
             let tf = NSTextField(frame: NSRect(x: 0, y: 0, width: 200, height: 24))
             alert.accessoryView = tf
-            let response: NSModalResponse = alert.runModal()
-            if response == NSAlertFirstButtonReturn {
+			let response: NSApplication.ModalResponse = alert.runModal()
+			if response == NSApplication.ModalResponse.alertFirstButtonReturn {
                 appDelegate.addFromSms(tf.stringValue)
             }
         }
@@ -58,19 +58,19 @@ class TableViewController: NSViewController, NSTableViewDelegate, NSTableViewDat
         return busStops.count
     }
     
-    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
+	func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         
         if tableColumn!.title == "Name"
         {
-            return busStops[row].value(forKey: "name")
+			return busStops[row].value(forKey: "name") as AnyObject
         }
         else
         {
-            return busStops[row].value(forKey: "sms")
+			return busStops[row].value(forKey: "sms") as AnyObject
         }
     }
     
-    func tableViewDoubleClick(){
+	@objc func tableViewDoubleClick(){
         let sms = busStops[tableView.selectedRow].value(forKey: "sms") as! String
         appDelegate.openNewDepartureBoardWindow(sms)
     }
@@ -78,7 +78,7 @@ class TableViewController: NSViewController, NSTableViewDelegate, NSTableViewDat
     func readBusStopsFromCoreData() {
         busStops.removeAll()
         let managedContext = appDelegate.managedObjectContext
-        let fetchRequest = NSFetchRequest(entityName: "BusStop")
+		let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "BusStop")
         do {
             let results = try managedContext.fetch(fetchRequest)
             self.busStops = results as! [NSManagedObject]
